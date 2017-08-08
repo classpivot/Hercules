@@ -8,13 +8,27 @@
 
 /* Begin PBXBuildFile section */
 		927757981F3A226F00A3AF56 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 927757971F3A226F00A3AF56 /* AppDelegate.swift */; };
-		9277579A1F3A226F00A3AF56 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 927757991F3A226F00A3AF56 /* ViewController.swift */; };
 		9277579D1F3A226F00A3AF56 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9277579B1F3A226F00A3AF56 /* Main.storyboard */; };
 		927757A01F3A226F00A3AF56 /* Hercules.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 9277579E1F3A226F00A3AF56 /* Hercules.xcdatamodeld */; };
 		927757A21F3A226F00A3AF56 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 927757A11F3A226F00A3AF56 /* Assets.xcassets */; };
 		927757A51F3A226F00A3AF56 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 927757A31F3A226F00A3AF56 /* LaunchScreen.storyboard */; };
 		927757B01F3A226F00A3AF56 /* HerculesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 927757AF1F3A226F00A3AF56 /* HerculesTests.swift */; };
 		927757BB1F3A226F00A3AF56 /* HerculesUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 927757BA1F3A226F00A3AF56 /* HerculesUITests.swift */; };
+		927757CE1F3A29D900A3AF56 /* CoreDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 927757CD1F3A29D900A3AF56 /* CoreDataService.swift */; };
+		927757D41F3A2A1C00A3AF56 /* DashboardVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 927757D31F3A2A1C00A3AF56 /* DashboardVC.swift */; };
+		927757D91F3A2A2A00A3AF56 /* CreateNewWorkoutVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 927757D51F3A2A2A00A3AF56 /* CreateNewWorkoutVC.swift */; };
+		927757DA1F3A2A2A00A3AF56 /* NewWorkoutVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 927757D61F3A2A2A00A3AF56 /* NewWorkoutVC.swift */; };
+		927757DB1F3A2A2A00A3AF56 /* WorkoutPlanChoiceVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 927757D71F3A2A2A00A3AF56 /* WorkoutPlanChoiceVC.swift */; };
+		927757DC1F3A2A2A00A3AF56 /* WorkoutTypeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 927757D81F3A2A2A00A3AF56 /* WorkoutTypeVC.swift */; };
+		927757DE1F3A2A4B00A3AF56 /* ProfileMainVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 927757DD1F3A2A4B00A3AF56 /* ProfileMainVC.swift */; };
+		927757E01F3A2A5F00A3AF56 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 927757DF1F3A2A5F00A3AF56 /* Constants.swift */; };
+		927757E21F3A2A8600A3AF56 /* Body.swift in Sources */ = {isa = PBXBuildFile; fileRef = 927757E11F3A2A8600A3AF56 /* Body.swift */; };
+		927757E71F3A2F9C00A3AF56 /* Exercise+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 927757E31F3A2F9C00A3AF56 /* Exercise+CoreDataClass.swift */; };
+		927757E81F3A2F9C00A3AF56 /* Exercise+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 927757E41F3A2F9C00A3AF56 /* Exercise+CoreDataProperties.swift */; };
+		927757E91F3A2F9C00A3AF56 /* Workout+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 927757E51F3A2F9C00A3AF56 /* Workout+CoreDataClass.swift */; };
+		927757EA1F3A2F9C00A3AF56 /* Workout+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 927757E61F3A2F9C00A3AF56 /* Workout+CoreDataProperties.swift */; };
+		927757EC1F3A31A800A3AF56 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 927757EB1F3A31A800A3AF56 /* MainTabBarController.swift */; };
+		C815EB2D8E3F017392761EC8 /* Pods_Hercules.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 067F08225C550F463D6FFCF8 /* Pods_Hercules.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,9 +49,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		067F08225C550F463D6FFCF8 /* Pods_Hercules.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Hercules.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		0DC8447923D57DF01D8402DF /* Pods-Hercules.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Hercules.release.xcconfig"; path = "Pods/Target Support Files/Pods-Hercules/Pods-Hercules.release.xcconfig"; sourceTree = "<group>"; };
+		0F9E17374466C10230B1CE99 /* Pods-Hercules.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Hercules.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Hercules/Pods-Hercules.debug.xcconfig"; sourceTree = "<group>"; };
 		927757941F3A226F00A3AF56 /* Hercules.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Hercules.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		927757971F3A226F00A3AF56 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		927757991F3A226F00A3AF56 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		9277579C1F3A226F00A3AF56 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		9277579F1F3A226F00A3AF56 /* Hercules.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Hercules.xcdatamodel; sourceTree = "<group>"; };
 		927757A11F3A226F00A3AF56 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -49,6 +65,20 @@
 		927757B61F3A226F00A3AF56 /* HerculesUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HerculesUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		927757BA1F3A226F00A3AF56 /* HerculesUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HerculesUITests.swift; sourceTree = "<group>"; };
 		927757BC1F3A226F00A3AF56 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		927757CD1F3A29D900A3AF56 /* CoreDataService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CoreDataService.swift; path = Services/CoreDataService.swift; sourceTree = "<group>"; };
+		927757D31F3A2A1C00A3AF56 /* DashboardVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DashboardVC.swift; path = Views/Dashboard/DashboardVC.swift; sourceTree = "<group>"; };
+		927757D51F3A2A2A00A3AF56 /* CreateNewWorkoutVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CreateNewWorkoutVC.swift; path = Views/Today/CreateNewWorkoutVC.swift; sourceTree = "<group>"; };
+		927757D61F3A2A2A00A3AF56 /* NewWorkoutVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NewWorkoutVC.swift; path = Views/Today/NewWorkoutVC.swift; sourceTree = "<group>"; };
+		927757D71F3A2A2A00A3AF56 /* WorkoutPlanChoiceVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WorkoutPlanChoiceVC.swift; path = Views/Today/WorkoutPlanChoiceVC.swift; sourceTree = "<group>"; };
+		927757D81F3A2A2A00A3AF56 /* WorkoutTypeVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WorkoutTypeVC.swift; path = Views/Today/WorkoutTypeVC.swift; sourceTree = "<group>"; };
+		927757DD1F3A2A4B00A3AF56 /* ProfileMainVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ProfileMainVC.swift; path = Views/Profile/ProfileMainVC.swift; sourceTree = "<group>"; };
+		927757DF1F3A2A5F00A3AF56 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Constants.swift; path = Utilities/Constants.swift; sourceTree = "<group>"; };
+		927757E11F3A2A8600A3AF56 /* Body.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Body.swift; path = Models/Body.swift; sourceTree = "<group>"; };
+		927757E31F3A2F9C00A3AF56 /* Exercise+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Exercise+CoreDataClass.swift"; path = "Models/Exercise+CoreDataClass.swift"; sourceTree = "<group>"; };
+		927757E41F3A2F9C00A3AF56 /* Exercise+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Exercise+CoreDataProperties.swift"; path = "Models/Exercise+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		927757E51F3A2F9C00A3AF56 /* Workout+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Workout+CoreDataClass.swift"; path = "Models/Workout+CoreDataClass.swift"; sourceTree = "<group>"; };
+		927757E61F3A2F9C00A3AF56 /* Workout+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Workout+CoreDataProperties.swift"; path = "Models/Workout+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		927757EB1F3A31A800A3AF56 /* MainTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MainTabBarController.swift; path = Views/MainTabBarController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +86,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C815EB2D8E3F017392761EC8 /* Pods_Hercules.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -76,6 +107,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		456D5CA335E2153566D3E87C /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				0F9E17374466C10230B1CE99 /* Pods-Hercules.debug.xcconfig */,
+				0DC8447923D57DF01D8402DF /* Pods-Hercules.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		9277578B1F3A226F00A3AF56 = {
 			isa = PBXGroup;
 			children = (
@@ -83,6 +123,8 @@
 				927757AE1F3A226F00A3AF56 /* HerculesTests */,
 				927757B91F3A226F00A3AF56 /* HerculesUITests */,
 				927757951F3A226F00A3AF56 /* Products */,
+				456D5CA335E2153566D3E87C /* Pods */,
+				DB5F797ECDFCB39ADAFBA074 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -100,12 +142,16 @@
 			isa = PBXGroup;
 			children = (
 				927757971F3A226F00A3AF56 /* AppDelegate.swift */,
-				927757991F3A226F00A3AF56 /* ViewController.swift */,
 				9277579B1F3A226F00A3AF56 /* Main.storyboard */,
 				927757A11F3A226F00A3AF56 /* Assets.xcassets */,
 				927757A31F3A226F00A3AF56 /* LaunchScreen.storyboard */,
 				927757A61F3A226F00A3AF56 /* Info.plist */,
 				9277579E1F3A226F00A3AF56 /* Hercules.xcdatamodeld */,
+				927757C81F3A297700A3AF56 /* Utilities */,
+				927757CC1F3A29CA00A3AF56 /* Services */,
+				927757CB1F3A299500A3AF56 /* Presenters */,
+				927757CA1F3A298D00A3AF56 /* Views */,
+				927757C91F3A298200A3AF56 /* Models */,
 			);
 			path = Hercules;
 			sourceTree = "<group>";
@@ -128,6 +174,95 @@
 			path = HerculesUITests;
 			sourceTree = "<group>";
 		};
+		927757C81F3A297700A3AF56 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				927757DF1F3A2A5F00A3AF56 /* Constants.swift */,
+			);
+			name = Utilities;
+			sourceTree = "<group>";
+		};
+		927757C91F3A298200A3AF56 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				927757E31F3A2F9C00A3AF56 /* Exercise+CoreDataClass.swift */,
+				927757E41F3A2F9C00A3AF56 /* Exercise+CoreDataProperties.swift */,
+				927757E51F3A2F9C00A3AF56 /* Workout+CoreDataClass.swift */,
+				927757E61F3A2F9C00A3AF56 /* Workout+CoreDataProperties.swift */,
+				927757E11F3A2A8600A3AF56 /* Body.swift */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
+		927757CA1F3A298D00A3AF56 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				927757EB1F3A31A800A3AF56 /* MainTabBarController.swift */,
+				927757D21F3A29FF00A3AF56 /* Login */,
+				927757D11F3A29F700A3AF56 /* Profile */,
+				927757D01F3A29F000A3AF56 /* Today */,
+				927757CF1F3A29E800A3AF56 /* Dashboard */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
+		927757CB1F3A299500A3AF56 /* Presenters */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Presenters;
+			sourceTree = "<group>";
+		};
+		927757CC1F3A29CA00A3AF56 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				927757CD1F3A29D900A3AF56 /* CoreDataService.swift */,
+			);
+			name = Services;
+			sourceTree = "<group>";
+		};
+		927757CF1F3A29E800A3AF56 /* Dashboard */ = {
+			isa = PBXGroup;
+			children = (
+				927757D31F3A2A1C00A3AF56 /* DashboardVC.swift */,
+			);
+			name = Dashboard;
+			sourceTree = "<group>";
+		};
+		927757D01F3A29F000A3AF56 /* Today */ = {
+			isa = PBXGroup;
+			children = (
+				927757D51F3A2A2A00A3AF56 /* CreateNewWorkoutVC.swift */,
+				927757D61F3A2A2A00A3AF56 /* NewWorkoutVC.swift */,
+				927757D71F3A2A2A00A3AF56 /* WorkoutPlanChoiceVC.swift */,
+				927757D81F3A2A2A00A3AF56 /* WorkoutTypeVC.swift */,
+			);
+			name = Today;
+			sourceTree = "<group>";
+		};
+		927757D11F3A29F700A3AF56 /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				927757DD1F3A2A4B00A3AF56 /* ProfileMainVC.swift */,
+			);
+			name = Profile;
+			sourceTree = "<group>";
+		};
+		927757D21F3A29FF00A3AF56 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Login;
+			sourceTree = "<group>";
+		};
+		DB5F797ECDFCB39ADAFBA074 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				067F08225C550F463D6FFCF8 /* Pods_Hercules.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -135,9 +270,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 927757BF1F3A226F00A3AF56 /* Build configuration list for PBXNativeTarget "Hercules" */;
 			buildPhases = (
+				26E6420D43558E3EC688FC5C /* [CP] Check Pods Manifest.lock */,
 				927757901F3A226F00A3AF56 /* Sources */,
 				927757911F3A226F00A3AF56 /* Frameworks */,
 				927757921F3A226F00A3AF56 /* Resources */,
+				724A544CFB34B95351EF199E /* [CP] Embed Pods Frameworks */,
+				AB7623E5E9ABE83AC00FAF49 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -258,14 +396,75 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		26E6420D43558E3EC688FC5C /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		724A544CFB34B95351EF199E /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Hercules/Pods-Hercules-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		AB7623E5E9ABE83AC00FAF49 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Hercules/Pods-Hercules-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		927757901F3A226F00A3AF56 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				927757E21F3A2A8600A3AF56 /* Body.swift in Sources */,
+				927757DE1F3A2A4B00A3AF56 /* ProfileMainVC.swift in Sources */,
 				927757A01F3A226F00A3AF56 /* Hercules.xcdatamodeld in Sources */,
-				9277579A1F3A226F00A3AF56 /* ViewController.swift in Sources */,
+				927757D41F3A2A1C00A3AF56 /* DashboardVC.swift in Sources */,
+				927757DB1F3A2A2A00A3AF56 /* WorkoutPlanChoiceVC.swift in Sources */,
+				927757CE1F3A29D900A3AF56 /* CoreDataService.swift in Sources */,
+				927757EA1F3A2F9C00A3AF56 /* Workout+CoreDataProperties.swift in Sources */,
+				927757E01F3A2A5F00A3AF56 /* Constants.swift in Sources */,
+				927757E91F3A2F9C00A3AF56 /* Workout+CoreDataClass.swift in Sources */,
+				927757DC1F3A2A2A00A3AF56 /* WorkoutTypeVC.swift in Sources */,
+				927757EC1F3A31A800A3AF56 /* MainTabBarController.swift in Sources */,
+				927757DA1F3A2A2A00A3AF56 /* NewWorkoutVC.swift in Sources */,
+				927757E81F3A2F9C00A3AF56 /* Exercise+CoreDataProperties.swift in Sources */,
 				927757981F3A226F00A3AF56 /* AppDelegate.swift in Sources */,
+				927757D91F3A2A2A00A3AF56 /* CreateNewWorkoutVC.swift in Sources */,
+				927757E71F3A2F9C00A3AF56 /* Exercise+CoreDataClass.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -415,10 +614,12 @@
 		};
 		927757C01F3A226F00A3AF56 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0F9E17374466C10230B1CE99 /* Pods-Hercules.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = A48E89D852;
 				INFOPLIST_FILE = Hercules/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.classpivot.Hercules;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -428,10 +629,12 @@
 		};
 		927757C11F3A226F00A3AF56 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0DC8447923D57DF01D8402DF /* Pods-Hercules.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = A48E89D852;
 				INFOPLIST_FILE = Hercules/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.classpivot.Hercules;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -512,6 +715,7 @@
 				927757C11F3A226F00A3AF56 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		927757C21F3A226F00A3AF56 /* Build configuration list for PBXNativeTarget "HerculesTests" */ = {
 			isa = XCConfigurationList;
@@ -520,6 +724,7 @@
 				927757C41F3A226F00A3AF56 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		927757C51F3A226F00A3AF56 /* Build configuration list for PBXNativeTarget "HerculesUITests" */ = {
 			isa = XCConfigurationList;
@@ -528,6 +733,7 @@
 				927757C71F3A226F00A3AF56 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 

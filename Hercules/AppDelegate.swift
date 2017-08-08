@@ -9,6 +9,11 @@
 import UIKit
 import CoreData
 
+var device_width: CGFloat = 0
+var device_height: CGFloat = 0
+var navi_height: CGFloat = 64
+var tabbar_height: CGFloat = 60
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
@@ -17,6 +22,33 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        UIApplication.shared.statusBarStyle = .lightContent
+        device_width = UIScreen.main.bounds.size.width
+        device_height = UIScreen.main.bounds.size.height
+        
+        //setting up navigation bar appearance
+        UINavigationBar.appearance().titleTextAttributes = [
+            NSForegroundColorAttributeName: UIColor.white,
+            //            NSFontAttributeName: UIFont(name: "Avenir-Book", size: 17)!
+        ]
+        let appearance = UIBarButtonItem.appearance()
+        appearance.setTitleTextAttributes(
+            [ NSForegroundColorAttributeName: UIColor.white,
+              NSFontAttributeName: UIFont.systemFont(ofSize: 17),
+              ],
+            for: UIControlState()
+        )
+        UINavigationBar.appearance().barTintColor = Constants.Colors.darkGray
+        UINavigationBar.appearance().setBackgroundImage(UIImage(), for: UIBarMetrics.default)
+        UINavigationBar.appearance().shadowImage = UIImage()
+        UINavigationBar.appearance().alpha = 0.0
+        UINavigationBar.appearance().isTranslucent = false
+        UINavigationBar.appearance().tintColor = UIColor.white
+        //setting up tabbar appearance, the selected and unselected item base color
+        UITabBarItem.appearance().setTitleTextAttributes([NSForegroundColorAttributeName: Constants.Colors.gray], for: UIControlState())
+        UITabBarItem.appearance().setTitleTextAttributes([NSForegroundColorAttributeName: UIColor.white], for: .selected)
+        UITabBarItem.appearance().titlePositionAdjustment = UIOffset(horizontal: 0, vertical: -4)
+        
         return true
     }
 
