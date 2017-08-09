@@ -16,6 +16,7 @@ class CoreDataService {
     
     static let managedContext = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
+    //Get latest workout plan
     static func getTodayWorkoutData() -> Workout? {
         let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "Workout")
         fetchRequest.predicate = NSPredicate(format: "(created_date >= %@) and (created_date < %@)", Date().startOfDay() as CVarArg, Date().endOfDay() as CVarArg)
@@ -28,6 +29,7 @@ class CoreDataService {
         return nil
     }
     
+    //Get last 3 workout records based on body parts
     static func getMyWorkoutPlan() -> [Workout] {
         let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "Workout")
         let sortDescriptor = NSSortDescriptor(key: "created_date", ascending: false)
@@ -44,18 +46,49 @@ class CoreDataService {
         return []
     }
     
+    //Internal use for creating workout template
     static func createWorkoutTemplate() {
         let workoutEntity = NSEntityDescription.entity(forEntityName: "Workout", in: managedContext)
         let newWorkout = Workout(entity: workoutEntity!, insertInto: managedContext)
-        newWorkout.name = "Test Workout 1"
+        newWorkout.name = "Chest Template One"
         newWorkout.created_date = NSDate()
+        newWorkout.template_flag = true
+        newWorkout.body_parts = [Body.chest.rawValue]
         let exerciseEntity = NSEntityDescription.entity(forEntityName: "Exercise", in: managedContext)
-        let newExercise = Exercise(entity: exerciseEntity!, insertInto: managedContext)
-        newExercise.name = "Text Exercise 1"
-        newExercise.weight = 100
-        newExercise.reps = 12
-        let exercises = newWorkout.mutableSetValue(forKey: "exercise")
-        exercises.add(newExercise)
+//        let exercises = newWorkout.mutableSetValue(forKey: "exercise")
+        let exercises = newWorkout.mutableOrderedSetValue(forKey: "exercise")
+        for _ in 0..<3 {
+            let newExercise = Exercise(entity: exerciseEntity!, insertInto: managedContext)
+            newExercise.name = "Barbell Incline Bench Press"
+            newExercise.weight = 0
+            newExercise.reps = 0
+            newExercise.created_date = NSDate()
+            exercises.add(newExercise)
+        }
+        for _ in 0..<3 {
+            let newExercise = Exercise(entity: exerciseEntity!, insertInto: managedContext)
+            newExercise.name = "Barbell Bench Press"
+            newExercise.weight = 0
+            newExercise.reps = 0
+            newExercise.created_date = NSDate()
+            exercises.add(newExercise)
+        }
+        for _ in 0..<3 {
+            let newExercise = Exercise(entity: exerciseEntity!, insertInto: managedContext)
+            newExercise.name = "Peck Dec Fly"
+            newExercise.weight = 0
+            newExercise.reps = 0
+            newExercise.created_date = NSDate()
+            exercises.add(newExercise)
+        }
+        for _ in 0..<3 {
+            let newExercise = Exercise(entity: exerciseEntity!, insertInto: managedContext)
+            newExercise.name = "Cable Triceps Extension"
+            newExercise.weight = 0
+            newExercise.reps = 0
+            newExercise.created_date = NSDate()
+            exercises.add(newExercise)
+        }
         do {
             try newWorkout.managedObjectContext?.save()
         } catch {
@@ -63,6 +96,7 @@ class CoreDataService {
             print(saveError)
         }
     }
+    
     
     static func updateWorkout(workout: Workout) {
         workout.name = "New Workout Test 1"

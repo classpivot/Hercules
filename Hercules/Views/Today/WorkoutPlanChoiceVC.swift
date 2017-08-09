@@ -110,6 +110,9 @@ extension WorkoutPlanChoiceVC {
     //TO DO: move to presenter later
     func fetchWorkoutDataFromCoreData() {
         workoutList = CoreDataService.getMyWorkoutPlan()
+        for ex in workoutList[0].exercise! {
+            print((ex as! Exercise).name!)
+        }
         myPlansTableView.reloadData()
     }
 }
