@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		9212BBEC1F3A83D300D4BEA4 /* Exercise+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9212BBEA1F3A83D300D4BEA4 /* Exercise+CoreDataProperties.swift */; };
 		9212BBED1F3A83D300D4BEA4 /* Workout+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9212BBEB1F3A83D300D4BEA4 /* Workout+CoreDataProperties.swift */; };
+		922585B91F3B8106004F7515 /* WorkoutTemplateVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 922585B81F3B8106004F7515 /* WorkoutTemplateVC.swift */; };
 		927757981F3A226F00A3AF56 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 927757971F3A226F00A3AF56 /* AppDelegate.swift */; };
 		9277579D1F3A226F00A3AF56 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9277579B1F3A226F00A3AF56 /* Main.storyboard */; };
 		927757A01F3A226F00A3AF56 /* Hercules.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 9277579E1F3A226F00A3AF56 /* Hercules.xcdatamodeld */; };
@@ -54,6 +55,7 @@
 		0F9E17374466C10230B1CE99 /* Pods-Hercules.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Hercules.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Hercules/Pods-Hercules.debug.xcconfig"; sourceTree = "<group>"; };
 		9212BBEA1F3A83D300D4BEA4 /* Exercise+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Exercise+CoreDataProperties.swift"; path = "Models/Exercise+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		9212BBEB1F3A83D300D4BEA4 /* Workout+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Workout+CoreDataProperties.swift"; path = "Models/Workout+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		922585B81F3B8106004F7515 /* WorkoutTemplateVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WorkoutTemplateVC.swift; path = Views/Today/WorkoutTemplateVC.swift; sourceTree = "<group>"; };
 		927757941F3A226F00A3AF56 /* Hercules.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Hercules.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		927757971F3A226F00A3AF56 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9277579C1F3A226F00A3AF56 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -236,6 +238,7 @@
 				927757D81F3A2A2A00A3AF56 /* WorkoutTypeVC.swift */,
 				927757D71F3A2A2A00A3AF56 /* WorkoutPlanChoiceVC.swift */,
 				927757D51F3A2A2A00A3AF56 /* CreateNewWorkoutVC.swift */,
+				922585B81F3B8106004F7515 /* WorkoutTemplateVC.swift */,
 			);
 			name = Today;
 			sourceTree = "<group>";
@@ -451,6 +454,7 @@
 			files = (
 				927757E21F3A2A8600A3AF56 /* Body.swift in Sources */,
 				927757DE1F3A2A4B00A3AF56 /* ProfileMainVC.swift in Sources */,
+				922585B91F3B8106004F7515 /* WorkoutTemplateVC.swift in Sources */,
 				9212BBED1F3A83D300D4BEA4 /* Workout+CoreDataProperties.swift in Sources */,
 				9212BBEC1F3A83D300D4BEA4 /* Exercise+CoreDataProperties.swift in Sources */,
 				927757A01F3A226F00A3AF56 /* Hercules.xcdatamodeld in Sources */,

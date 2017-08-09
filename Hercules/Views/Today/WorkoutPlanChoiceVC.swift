@@ -54,6 +54,7 @@ extension WorkoutPlanChoiceVC {
         templatePlanButton = UIButton()
         templatePlanButton.setTitle(NSLocalizedString("Recommand a plan to me", comment: ""), for: .normal)
         templatePlanButton.setTitleColor(Constants.Colors.darkGray, for: .normal)
+        templatePlanButton.addTarget(self, action: #selector(self.templateButtonClicked), for: UIControlEvents.touchUpInside)
         templatePlanButton.translatesAutoresizingMaskIntoConstraints = false
         self.view.addSubview(templatePlanButton)
         
@@ -102,6 +103,9 @@ extension WorkoutPlanChoiceVC: UITableViewDelegate, UITableViewDataSource {
 extension WorkoutPlanChoiceVC {
     func createNewButtonClicked() {
         self.performSegue(withIdentifier: "createNewWorkoutSegue", sender: nil)
+    }
+    func templateButtonClicked() {
+        self.performSegue(withIdentifier: "workoutTemplateSegue", sender: nil)
     }
 }
 

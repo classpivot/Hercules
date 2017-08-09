@@ -12,7 +12,7 @@
         <!--Profile MainVC-->
         <scene sceneID="z7X-3a-4ZZ">
             <objects>
-                <viewController id="vsm-Eq-CeT" customClass="ProfileMainVC" customModule="Bloodhoof" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="vsm-Eq-CeT" customClass="ProfileMainVC" customModule="Hercules" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="SXc-HN-AcI"/>
                         <viewControllerLayoutGuide type="bottom" id="Dkg-ed-aN0"/>
@@ -31,7 +31,7 @@
         <!--DashboardVC-->
         <scene sceneID="LCU-ZL-uXI">
             <objects>
-                <viewController id="QSw-f3-DKe" customClass="DashboardVC" customModule="Bloodhoof" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="QSw-f3-DKe" customClass="DashboardVC" customModule="Hercules" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Kbq-Eq-icM"/>
                         <viewControllerLayoutGuide type="bottom" id="IuR-Xg-fQc"/>
@@ -50,7 +50,7 @@
         <!--LoginVC-->
         <scene sceneID="exT-aa-Jta">
             <objects>
-                <viewController id="HpJ-RZ-eNP" customClass="LoginVC" customModule="Bloodhoof" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="HpJ-RZ-eNP" customClass="LoginVC" customModule="Hercules" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Rm5-jf-NK8"/>
                         <viewControllerLayoutGuide type="bottom" id="C54-jW-gch"/>
@@ -71,7 +71,7 @@
         <!--Main Tab Bar Controller-->
         <scene sceneID="LAv-0T-4IW">
             <objects>
-                <tabBarController id="dCS-sp-fID" customClass="MainTabBarController" customModule="Bloodhoof" customModuleProvider="target" sceneMemberID="viewController">
+                <tabBarController id="dCS-sp-fID" customClass="MainTabBarController" customModule="Hercules" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBar key="tabBar" contentMode="scaleToFill" id="LlZ-73-WXk">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -90,7 +90,7 @@
         <!--New WorkoutVC-->
         <scene sceneID="G0M-dg-1iz">
             <objects>
-                <viewController id="Hsx-tR-okI" customClass="NewWorkoutVC" customModule="Bloodhoof" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="Hsx-tR-okI" customClass="NewWorkoutVC" customModule="Hercules" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="azT-4E-UwV"/>
                         <viewControllerLayoutGuide type="bottom" id="Eyx-zM-VVX"/>
@@ -112,7 +112,7 @@
         <!--Workout TypeVC-->
         <scene sceneID="zWS-zM-OGU">
             <objects>
-                <viewController id="kJ0-aH-2qc" customClass="WorkoutTypeVC" customModule="Bloodhoof" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="kJ0-aH-2qc" customClass="WorkoutTypeVC" customModule="Hercules" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="wZK-Mu-4aM"/>
                         <viewControllerLayoutGuide type="bottom" id="Dlb-ae-Byg"/>
@@ -133,7 +133,7 @@
         <!--Workout Plan ChoiceVC-->
         <scene sceneID="i3j-vH-bC6">
             <objects>
-                <viewController id="s01-4Y-fFi" customClass="WorkoutPlanChoiceVC" customModule="Bloodhoof" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="s01-4Y-fFi" customClass="WorkoutPlanChoiceVC" customModule="Hercules" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="BGg-Md-DrH"/>
                         <viewControllerLayoutGuide type="bottom" id="BFA-Qb-26e"/>
@@ -145,16 +145,35 @@
                     </view>
                     <connections>
                         <segue destination="3iz-JZ-peU" kind="show" identifier="createNewWorkoutSegue" id="ga3-pj-kFq"/>
+                        <segue destination="vNW-V0-Fp2" kind="show" identifier="workoutTemplateSegue" id="f2g-PL-Gw3"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BQJ-u4-4KO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2657" y="-67"/>
         </scene>
+        <!--Workout TemplateVC-->
+        <scene sceneID="jAe-vv-K4m">
+            <objects>
+                <viewController id="vNW-V0-Fp2" customClass="WorkoutTemplateVC" customModule="Hercules" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="YHX-Zx-WWF"/>
+                        <viewControllerLayoutGuide type="bottom" id="Iz4-Dk-ZN6"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="K4C-it-8lH">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Syx-6w-nQ7" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2657" y="599"/>
+        </scene>
         <!--Create New WorkoutVC-->
         <scene sceneID="VLb-7Q-dVP">
             <objects>
-                <viewController id="3iz-JZ-peU" customClass="CreateNewWorkoutVC" customModule="Bloodhoof" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="3iz-JZ-peU" customClass="CreateNewWorkoutVC" customModule="Hercules" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="FLk-GL-w80"/>
                         <viewControllerLayoutGuide type="bottom" id="6rZ-1K-q31"/>

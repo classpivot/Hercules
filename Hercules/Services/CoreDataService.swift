@@ -38,7 +38,22 @@ class CoreDataService {
         fetchRequest.predicate = NSPredicate(format: "(created_date >= %@) and (created_date < %@)", Date().startOfDay() as CVarArg, Date().endOfDay() as CVarArg)
         do {
             let workoutList = try managedContext.fetch(fetchRequest)
-            updateWorkout(workout: workoutList[0] as! Workout)
+            return workoutList as! [Workout]
+        } catch let error as NSError {
+            print("Could not fetch. \(error), \(error.userInfo)")
+        }
+        return []
+    }
+    
+    //get workout templates
+    static func getWorkoutTemplates() -> [Workout] {
+        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "Workout")
+        let sortDescriptor = NSSortDescriptor(key: "created_date", ascending: false)
+        fetchRequest.sortDescriptors = [sortDescriptor]
+        //        fetchRequest.predicate = NSPredicate(format: "body_parts CONTAINS ", Date().startOfDay() as CVarArg, Date().endOfDay() as CVarArg)
+        fetchRequest.predicate = NSPredicate(format: "template_flag = true")
+        do {
+            let workoutList = try managedContext.fetch(fetchRequest)
             return workoutList as! [Workout]
         } catch let error as NSError {
             print("Could not fetch. \(error), \(error.userInfo)")
