@@ -21,7 +21,8 @@ class NewWorkoutVC: UIViewController {
         navigationBarInit()
         startNewViewInit()
 
-        CoreDataService.createWorkoutTemplate()
+//        CoreDataService.createWorkoutTemplateChest()
+//        CoreDataService.createWorkoutTemplateBS()
     }
     
     //MARK: UI Inits

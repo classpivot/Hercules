@@ -2,7 +2,7 @@
 //  Exercise+CoreDataProperties.swift
 //  
 //
-//  Created by Xiao Yan on 8/8/17.
+//  Created by Xiao Yan on 8/11/17.
 //
 //
 
@@ -20,6 +20,6 @@ extension Exercise {
     @NSManaged public var name: String?
     @NSManaged public var reps: Int32
     @NSManaged public var weight: Double
-    @NSManaged public var workout: Workout?
+    @NSManaged public var section: Section?
 
 }

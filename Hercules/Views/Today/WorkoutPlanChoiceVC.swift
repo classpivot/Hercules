@@ -27,6 +27,10 @@ class WorkoutPlanChoiceVC: UIViewController {
         super.viewWillAppear(animated)
         fetchWorkoutDataFromCoreData()
     }
+    
+    deinit {
+        print("WorkoutPlanChoiceVC is destroyed.")
+    }
 }
 
 //MARK: - draw UI
@@ -90,6 +94,10 @@ extension WorkoutPlanChoiceVC: UITableViewDelegate, UITableViewDataSource {
         return true
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        self.performSegue(withIdentifier: "createNewWorkoutSegue", sender: indexPath)
+    }
+    
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if (editingStyle == UITableViewCellEditingStyle.delete) {
             CoreDataService.deleteWorkout(workout: workoutList[indexPath.row])
@@ -114,10 +122,17 @@ extension WorkoutPlanChoiceVC {
     //TO DO: move to presenter later
     func fetchWorkoutDataFromCoreData() {
         workoutList = CoreDataService.getMyWorkoutPlan()
-        for ex in workoutList[0].exercise! {
-            print((ex as! Exercise).name!)
-        }
         myPlansTableView.reloadData()
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let indexPath = sender as? IndexPath {
+            if segue.identifier == "createNewWorkoutSegue" {
+                let destVC = segue.destination as! CreateNewWorkoutVC
+                destVC.workout = workoutList[indexPath.row]
+            }
+        }
+        
     }
 }
 

@@ -7,19 +7,29 @@
 //
 
 import UIKit
+import CoreData
 
 class CreateNewWorkoutVC: UIViewController {
 
     var workoutNameTextField: UITextField!
     
     var exerciseTableView: UITableView!
-    var workOut: Workout!
+    var workout: Workout!
     var exerciseList: [Exercise]! = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        if workout == nil {
+            let managedContext = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+            let workoutEntity = NSEntityDescription.entity(forEntityName: "Workout", in: managedContext)
+            workout = Workout(entity: workoutEntity!, insertInto: managedContext)
+        }
         workoutNameTextFieldInit()
         exerciseTableViewInit()
+    }
+    
+    deinit {
+        print("CreateNewWorkoutVC is destroyed.")
     }
 }
 
@@ -31,6 +41,7 @@ extension CreateNewWorkoutVC {
         workoutNameTextField.layer.borderWidth = 1
         workoutNameTextField.layer.borderColor = UIColor.black.cgColor
         workoutNameTextField.placeholder = NSLocalizedString("Workout Name", comment: "")
+        workoutNameTextField.text = workout.name
         workoutNameTextField.setLeftPaddingPoints(20)
         workoutNameTextField.clearButtonMode = .whileEditing
         workoutNameTextField.returnKeyType = .done

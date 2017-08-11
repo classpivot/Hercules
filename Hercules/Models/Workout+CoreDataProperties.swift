@@ -2,7 +2,7 @@
 //  Workout+CoreDataProperties.swift
 //  
 //
-//  Created by Xiao Yan on 8/8/17.
+//  Created by Xiao Yan on 8/11/17.
 //
 //
 
@@ -16,45 +16,45 @@ extension Workout {
         return NSFetchRequest<Workout>(entityName: "Workout")
     }
 
-    @NSManaged public var body_parts: [String]
+    @NSManaged public var body_parts: NSObject?
     @NSManaged public var created_date: NSDate?
     @NSManaged public var name: String?
     @NSManaged public var template_flag: Bool
-    @NSManaged public var exercise: NSOrderedSet?
+    @NSManaged public var section: NSOrderedSet?
 
 }
 
-// MARK: Generated accessors for exercise
+// MARK: Generated accessors for section
 extension Workout {
 
-    @objc(insertObject:inExerciseAtIndex:)
-    @NSManaged public func insertIntoExercise(_ value: Exercise, at idx: Int)
+    @objc(insertObject:inSectionAtIndex:)
+    @NSManaged public func insertIntoSection(_ value: Section, at idx: Int)
 
-    @objc(removeObjectFromExerciseAtIndex:)
-    @NSManaged public func removeFromExercise(at idx: Int)
+    @objc(removeObjectFromSectionAtIndex:)
+    @NSManaged public func removeFromSection(at idx: Int)
 
-    @objc(insertExercise:atIndexes:)
-    @NSManaged public func insertIntoExercise(_ values: [Exercise], at indexes: NSIndexSet)
+    @objc(insertSection:atIndexes:)
+    @NSManaged public func insertIntoSection(_ values: [Section], at indexes: NSIndexSet)
 
-    @objc(removeExerciseAtIndexes:)
-    @NSManaged public func removeFromExercise(at indexes: NSIndexSet)
+    @objc(removeSectionAtIndexes:)
+    @NSManaged public func removeFromSection(at indexes: NSIndexSet)
 
-    @objc(replaceObjectInExerciseAtIndex:withObject:)
-    @NSManaged public func replaceExercise(at idx: Int, with value: Exercise)
+    @objc(replaceObjectInSectionAtIndex:withObject:)
+    @NSManaged public func replaceSection(at idx: Int, with value: Section)
 
-    @objc(replaceExerciseAtIndexes:withExercise:)
-    @NSManaged public func replaceExercise(at indexes: NSIndexSet, with values: [Exercise])
+    @objc(replaceSectionAtIndexes:withSection:)
+    @NSManaged public func replaceSection(at indexes: NSIndexSet, with values: [Section])
 
-    @objc(addExerciseObject:)
-    @NSManaged public func addToExercise(_ value: Exercise)
+    @objc(addSectionObject:)
+    @NSManaged public func addToSection(_ value: Section)
 
-    @objc(removeExerciseObject:)
-    @NSManaged public func removeFromExercise(_ value: Exercise)
+    @objc(removeSectionObject:)
+    @NSManaged public func removeFromSection(_ value: Section)
 
-    @objc(addExercise:)
-    @NSManaged public func addToExercise(_ values: NSOrderedSet)
+    @objc(addSection:)
+    @NSManaged public func addToSection(_ values: NSOrderedSet)
 
-    @objc(removeExercise:)
-    @NSManaged public func removeFromExercise(_ values: NSOrderedSet)
+    @objc(removeSection:)
+    @NSManaged public func removeFromSection(_ values: NSOrderedSet)
 
 }

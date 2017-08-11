@@ -19,6 +19,10 @@ class WorkoutTemplateVC: UIViewController {
         templatesTableViewInit()
 
     }
+    
+    deinit {
+        print("WorkoutTemplateVC is destroyed.")
+    }
 }
 
 //MARK: - draw UI
