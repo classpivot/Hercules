@@ -16,7 +16,7 @@ extension Workout {
         return NSFetchRequest<Workout>(entityName: "Workout")
     }
 
-    @NSManaged public var body_parts: NSObject?
+    @NSManaged public var body_parts: [String]?
     @NSManaged public var created_date: NSDate?
     @NSManaged public var name: String?
     @NSManaged public var template_flag: Bool

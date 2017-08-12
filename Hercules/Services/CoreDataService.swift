@@ -71,46 +71,64 @@ class CoreDataService {
         newWorkout.body_parts = [Body.chest.rawValue]
         let sections = newWorkout.mutableOrderedSetValue(forKey: "section")
         let sectionEntity = NSEntityDescription.entity(forEntityName: "Section", in: managedContext)
+        let exerciseEntity = NSEntityDescription.entity(forEntityName: "Exercise", in: managedContext)
         
         //section 0
         let newSection0 = Section(entity: sectionEntity!, insertInto: managedContext)
         newSection0.index = 0
-        let exercises = newSection0.mutableOrderedSetValue(forKey: "exercise")
-        let exerciseEntity = NSEntityDescription.entity(forEntityName: "Exercise", in: managedContext)
+        let exercises0 = newSection0.mutableOrderedSetValue(forKey: "exercise")
         for _ in 0..<3 {
             let newExercise = Exercise(entity: exerciseEntity!, insertInto: managedContext)
             newExercise.name = "Barbell Incline Bench Press"
             newExercise.weight = 0
             newExercise.reps = 0
             newExercise.created_date = NSDate()
-            exercises.add(newExercise)
+            exercises0.add(newExercise)
         }
         sections.add(newSection0)
         
+        //section 1
+        let newSection1 = Section(entity: sectionEntity!, insertInto: managedContext)
+        newSection1.index = 1
+        let exercises1 = newSection1.mutableOrderedSetValue(forKey: "exercise")
         for _ in 0..<3 {
             let newExercise = Exercise(entity: exerciseEntity!, insertInto: managedContext)
             newExercise.name = "Barbell Bench Press"
             newExercise.weight = 0
             newExercise.reps = 0
             newExercise.created_date = NSDate()
-            exercises.add(newExercise)
+            exercises1.add(newExercise)
         }
+        sections.add(newSection1)
+        
+        //section 2
+        let newSection2 = Section(entity: sectionEntity!, insertInto: managedContext)
+        newSection2.index = 2
+        let exercises2 = newSection2.mutableOrderedSetValue(forKey: "exercise")
         for _ in 0..<3 {
             let newExercise = Exercise(entity: exerciseEntity!, insertInto: managedContext)
             newExercise.name = "Peck Dec Fly"
             newExercise.weight = 0
             newExercise.reps = 0
             newExercise.created_date = NSDate()
-            exercises.add(newExercise)
+            exercises2.add(newExercise)
         }
+        sections.add(newSection2)
+        
+        //section 3
+        let newSection3 = Section(entity: sectionEntity!, insertInto: managedContext)
+        newSection3.index = 3
+        let exercises3 = newSection3.mutableOrderedSetValue(forKey: "exercise")
         for _ in 0..<3 {
             let newExercise = Exercise(entity: exerciseEntity!, insertInto: managedContext)
             newExercise.name = "Cable Triceps Extension"
             newExercise.weight = 0
             newExercise.reps = 0
             newExercise.created_date = NSDate()
-            exercises.add(newExercise)
+            exercises3.add(newExercise)
         }
+        sections.add(newSection3)
+        
         do {
             try newWorkout.managedObjectContext?.save()
         } catch {
@@ -126,65 +144,90 @@ class CoreDataService {
         newWorkout.created_date = NSDate()
         newWorkout.template_flag = true
         newWorkout.body_parts = [Body.back.rawValue, Body.shoulder.rawValue]
+        let sections = newWorkout.mutableOrderedSetValue(forKey: "section")
+        let sectionEntity = NSEntityDescription.entity(forEntityName: "Section", in: managedContext)
         let exerciseEntity = NSEntityDescription.entity(forEntityName: "Exercise", in: managedContext)
-        //        let exercises = newWorkout.mutableSetValue(forKey: "exercise")
-        let exercises = newWorkout.mutableOrderedSetValue(forKey: "exercise")
+        
+        //section 0
+        let newSection0 = Section(entity: sectionEntity!, insertInto: managedContext)
+        newSection0.index = 0
+        let exercises0 = newSection0.mutableOrderedSetValue(forKey: "exercise")
         for _ in 0..<3 {
             let newExercise = Exercise(entity: exerciseEntity!, insertInto: managedContext)
             newExercise.name = "Lat Pull"
             newExercise.weight = 0
             newExercise.reps = 0
             newExercise.created_date = NSDate()
-            exercises.add(newExercise)
+            exercises0.add(newExercise)
             let newExercise2 = Exercise(entity: exerciseEntity!, insertInto: managedContext)
             newExercise2.name = "Shoulder Press"
             newExercise2.weight = 0
             newExercise2.reps = 0
             newExercise2.created_date = NSDate()
-            exercises.add(newExercise2)
+            exercises0.add(newExercise2)
         }
+        sections.add(newSection0)
+        
+        //section 1
+        let newSection1 = Section(entity: sectionEntity!, insertInto: managedContext)
+        newSection1.index = 1
+        let exercises1 = newSection1.mutableOrderedSetValue(forKey: "exercise")
         for _ in 0..<3 {
             let newExercise = Exercise(entity: exerciseEntity!, insertInto: managedContext)
             newExercise.name = "MTS High Row"
             newExercise.weight = 0
             newExercise.reps = 0
             newExercise.created_date = NSDate()
-            exercises.add(newExercise)
+            exercises1.add(newExercise)
             let newExercise2 = Exercise(entity: exerciseEntity!, insertInto: managedContext)
             newExercise2.name = "Right Up Row"
             newExercise2.weight = 0
             newExercise2.reps = 0
             newExercise2.created_date = NSDate()
-            exercises.add(newExercise2)
+            exercises1.add(newExercise2)
         }
+        sections.add(newSection1)
+        
+        //section 2
+        let newSection2 = Section(entity: sectionEntity!, insertInto: managedContext)
+        newSection2.index = 2
+        let exercises2 = newSection2.mutableOrderedSetValue(forKey: "exercise")
         for _ in 0..<3 {
             let newExercise = Exercise(entity: exerciseEntity!, insertInto: managedContext)
             newExercise.name = "Row"
             newExercise.weight = 0
             newExercise.reps = 0
             newExercise.created_date = NSDate()
-            exercises.add(newExercise)
+            exercises2.add(newExercise)
             let newExercise2 = Exercise(entity: exerciseEntity!, insertInto: managedContext)
             newExercise2.name = "Bicep Curl"
             newExercise2.weight = 0
             newExercise2.reps = 0
             newExercise2.created_date = NSDate()
-            exercises.add(newExercise2)
+            exercises2.add(newExercise2)
         }
+        sections.add(newSection2)
+        
+        //section 3
+        let newSection3 = Section(entity: sectionEntity!, insertInto: managedContext)
+        newSection3.index = 3
+        let exercises3 = newSection3.mutableOrderedSetValue(forKey: "exercise")
         for _ in 0..<3 {
             let newExercise = Exercise(entity: exerciseEntity!, insertInto: managedContext)
             newExercise.name = "Face Pull"
             newExercise.weight = 0
             newExercise.reps = 0
             newExercise.created_date = NSDate()
-            exercises.add(newExercise)
+            exercises3.add(newExercise)
             let newExercise2 = Exercise(entity: exerciseEntity!, insertInto: managedContext)
             newExercise2.name = "Bent Over Fly"
             newExercise2.weight = 0
             newExercise2.reps = 0
             newExercise2.created_date = NSDate()
-            exercises.add(newExercise2)
+            exercises3.add(newExercise2)
         }
+        sections.add(newSection3)
+        
         do {
             try newWorkout.managedObjectContext?.save()
         } catch {

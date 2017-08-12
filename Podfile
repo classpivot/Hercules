@@ -3,9 +3,6 @@ platform :ios, ’10.0’
 use_frameworks!
 
 target ‘Hercules’ do
-    pod 'RxSwift'
-    pod 'RxCocoa'
-    pod 'Alamofire'
     pod 'SwiftyJSON'
 end
 
