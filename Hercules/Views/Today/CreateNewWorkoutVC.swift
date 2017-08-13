@@ -173,6 +173,10 @@ class ExerciseTableViewCell: UITableViewCell {
     
     var mainView: UIView!
     var nameLabel: UILabel!
+    var weightLabel: UILabel!
+    var weightTextField: UITextField!
+    var repsLabel: UILabel!
+    var repsTextField: UITextField!
     
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -189,6 +193,38 @@ class ExerciseTableViewCell: UITableViewCell {
         nameLabel.textColor = Constants.Colors.darkGray
         mainView.addSubview(nameLabel)
         
+        weightLabel = UILabel()
+        weightLabel.translatesAutoresizingMaskIntoConstraints = false
+        weightLabel.adjustsFontSizeToFitWidth = true
+        weightLabel.font = UIFont.boldSystemFont(ofSize: 17)
+        weightLabel.textColor = Constants.Colors.darkGray
+        weightLabel.text = "lbs: "
+        mainView.addSubview(weightLabel)
+        
+        weightTextField = UITextField()
+        weightTextField.translatesAutoresizingMaskIntoConstraints = false
+        weightTextField.text = "0"
+        weightTextField.textAlignment = .center
+        weightTextField.layer.borderColor = Constants.Colors.gray.cgColor
+        weightTextField.layer.borderWidth = 1
+        mainView.addSubview(weightTextField)
+        
+        repsLabel = UILabel()
+        repsLabel.translatesAutoresizingMaskIntoConstraints = false
+        repsLabel.adjustsFontSizeToFitWidth = true
+        repsLabel.font = UIFont.boldSystemFont(ofSize: 17)
+        repsLabel.textColor = Constants.Colors.darkGray
+        repsLabel.text = "reps: "
+        mainView.addSubview(repsLabel)
+        
+        repsTextField = UITextField()
+        repsTextField.translatesAutoresizingMaskIntoConstraints = false
+        repsTextField.text = "0"
+        repsTextField.textAlignment = .center
+        repsTextField.layer.borderColor = Constants.Colors.gray.cgColor
+        repsTextField.layer.borderWidth = 1
+        mainView.addSubview(repsTextField)
+        
         setConstraints()
     }
     
@@ -198,11 +234,30 @@ class ExerciseTableViewCell: UITableViewCell {
         mainView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 5).isActive = true
         mainView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -5).isActive = true
         mainView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -5).isActive = true
-        mainView.heightAnchor.constraint(equalToConstant: 100).isActive = true
+        mainView.heightAnchor.constraint(equalToConstant: 60).isActive = true
         
-        nameLabel.centerYAnchor.constraint(equalTo: mainView.centerYAnchor).isActive = true
+        nameLabel.topAnchor.constraint(equalTo: mainView.topAnchor).isActive = true
         nameLabel.leadingAnchor.constraint(equalTo: mainView.leadingAnchor, constant: 20).isActive = true
         nameLabel.trailingAnchor.constraint(equalTo: mainView.trailingAnchor, constant: -20).isActive = true
+        nameLabel.heightAnchor.constraint(equalTo: mainView.heightAnchor, multiplier: 0.5).isActive = true
+        
+        weightLabel.bottomAnchor.constraint(equalTo: mainView.bottomAnchor).isActive = true
+        weightLabel.leadingAnchor.constraint(equalTo: mainView.leadingAnchor, constant: 20).isActive = true
+        weightLabel.heightAnchor.constraint(equalTo: mainView.heightAnchor, multiplier: 0.5).isActive = true
+        
+        weightTextField.bottomAnchor.constraint(equalTo: mainView.bottomAnchor, constant: -5).isActive = true
+        weightTextField.leadingAnchor.constraint(equalTo: weightLabel.trailingAnchor, constant: 0).isActive = true
+        weightTextField.widthAnchor.constraint(equalToConstant: 60).isActive = true
+        weightTextField.heightAnchor.constraint(equalTo: mainView.heightAnchor, multiplier: 0.5, constant: -10).isActive = true
+        
+        repsLabel.bottomAnchor.constraint(equalTo: mainView.bottomAnchor).isActive = true
+        repsLabel.leadingAnchor.constraint(equalTo: weightTextField.trailingAnchor, constant: 50).isActive = true
+        repsLabel.heightAnchor.constraint(equalTo: mainView.heightAnchor, multiplier: 0.5).isActive = true
+        
+        repsTextField.bottomAnchor.constraint(equalTo: mainView.bottomAnchor, constant: -5).isActive = true
+        repsTextField.leadingAnchor.constraint(equalTo: repsLabel.trailingAnchor, constant: 0).isActive = true
+        repsTextField.widthAnchor.constraint(equalToConstant: 60).isActive = true
+        repsTextField.heightAnchor.constraint(equalTo: mainView.heightAnchor, multiplier: 0.5, constant: -10).isActive = true
     }
     
     required init?(coder aDecoder: NSCoder) {
