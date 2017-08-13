@@ -76,6 +76,7 @@ class CoreDataService {
         //section 0
         let newSection0 = Section(entity: sectionEntity!, insertInto: managedContext)
         newSection0.index = 0
+        newSection0.name = "Section 1"
         let exercises0 = newSection0.mutableOrderedSetValue(forKey: "exercise")
         for _ in 0..<3 {
             let newExercise = Exercise(entity: exerciseEntity!, insertInto: managedContext)
@@ -90,6 +91,7 @@ class CoreDataService {
         //section 1
         let newSection1 = Section(entity: sectionEntity!, insertInto: managedContext)
         newSection1.index = 1
+        newSection1.name = "Section 2"
         let exercises1 = newSection1.mutableOrderedSetValue(forKey: "exercise")
         for _ in 0..<3 {
             let newExercise = Exercise(entity: exerciseEntity!, insertInto: managedContext)
@@ -104,6 +106,7 @@ class CoreDataService {
         //section 2
         let newSection2 = Section(entity: sectionEntity!, insertInto: managedContext)
         newSection2.index = 2
+        newSection2.name = "Section 3"
         let exercises2 = newSection2.mutableOrderedSetValue(forKey: "exercise")
         for _ in 0..<3 {
             let newExercise = Exercise(entity: exerciseEntity!, insertInto: managedContext)
@@ -118,6 +121,7 @@ class CoreDataService {
         //section 3
         let newSection3 = Section(entity: sectionEntity!, insertInto: managedContext)
         newSection3.index = 3
+        newSection3.name = "Section 4"
         let exercises3 = newSection3.mutableOrderedSetValue(forKey: "exercise")
         for _ in 0..<3 {
             let newExercise = Exercise(entity: exerciseEntity!, insertInto: managedContext)
@@ -151,6 +155,7 @@ class CoreDataService {
         //section 0
         let newSection0 = Section(entity: sectionEntity!, insertInto: managedContext)
         newSection0.index = 0
+        newSection0.name = "Section 1"
         let exercises0 = newSection0.mutableOrderedSetValue(forKey: "exercise")
         for _ in 0..<3 {
             let newExercise = Exercise(entity: exerciseEntity!, insertInto: managedContext)
@@ -171,6 +176,7 @@ class CoreDataService {
         //section 1
         let newSection1 = Section(entity: sectionEntity!, insertInto: managedContext)
         newSection1.index = 1
+        newSection1.name = "Section 2"
         let exercises1 = newSection1.mutableOrderedSetValue(forKey: "exercise")
         for _ in 0..<3 {
             let newExercise = Exercise(entity: exerciseEntity!, insertInto: managedContext)
@@ -191,6 +197,7 @@ class CoreDataService {
         //section 2
         let newSection2 = Section(entity: sectionEntity!, insertInto: managedContext)
         newSection2.index = 2
+        newSection2.name = "Section 3"
         let exercises2 = newSection2.mutableOrderedSetValue(forKey: "exercise")
         for _ in 0..<3 {
             let newExercise = Exercise(entity: exerciseEntity!, insertInto: managedContext)
@@ -211,6 +218,7 @@ class CoreDataService {
         //section 3
         let newSection3 = Section(entity: sectionEntity!, insertInto: managedContext)
         newSection3.index = 3
+        newSection3.name = "Section 4"
         let exercises3 = newSection3.mutableOrderedSetValue(forKey: "exercise")
         for _ in 0..<3 {
             let newExercise = Exercise(entity: exerciseEntity!, insertInto: managedContext)
@@ -251,6 +259,13 @@ class CoreDataService {
     }
     
     static func deleteExercise(exercise: Exercise) {
+        self.managedContext.delete(exercise)
         
+        do {
+            try self.managedContext.save()
+        } catch {
+            let saveError = error as NSError
+            print(saveError)
+        }
     }
 }

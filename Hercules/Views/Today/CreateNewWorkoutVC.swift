@@ -15,6 +15,7 @@ class CreateNewWorkoutVC: UIViewController {
     
     var exerciseTableView: UITableView!
     var workout: Workout!
+    var sectionList: [Section]! = []
     var exerciseList: [Exercise]! = []
     
     override func viewDidLoad() {
@@ -23,6 +24,13 @@ class CreateNewWorkoutVC: UIViewController {
             let managedContext = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
             let workoutEntity = NSEntityDescription.entity(forEntityName: "Workout", in: managedContext)
             workout = Workout(entity: workoutEntity!, insertInto: managedContext)
+        } else {
+            if let sections = workout.section {
+                for section in sections {
+                    sectionList.append(section as! Section)
+                }
+//                sectionList = sectionList.sorted(by: {$0.index < $1.index})
+            }
         }
         workoutNameTextFieldInit()
         exerciseTableViewInit()
@@ -59,6 +67,7 @@ extension CreateNewWorkoutVC {
         exerciseTableView.delegate = self
         exerciseTableView.dataSource = self
         exerciseTableView.register(ExerciseTableViewCell.self, forCellReuseIdentifier: ExerciseTableViewCell.identifier)
+        exerciseTableView.register(AddExerciseTableViewCell.self, forCellReuseIdentifier: AddExerciseTableViewCell.identifier)
         exerciseTableView.backgroundColor = UIColor.white
         exerciseTableView.tableFooterView = UIView()
         exerciseTableView.separatorStyle = .none
@@ -70,21 +79,75 @@ extension CreateNewWorkoutVC {
         exerciseTableView.topAnchor.constraint(equalTo: workoutNameTextField.bottomAnchor, constant: 30).isActive = true
         exerciseTableView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 0).isActive = true
         exerciseTableView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: 0).isActive = true
-        exerciseTableView.bottomAnchor.constraint(equalTo: bottomLayoutGuide.topAnchor, constant: 0).isActive = true
+        exerciseTableView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: -60).isActive = true
     }
 }
 
 //MARK: - UITableViewDelegate, UITableViewDataSource
 extension CreateNewWorkoutVC: UITableViewDelegate, UITableViewDataSource {
+    func numberOfSections(in tableView: UITableView) -> Int {
+        //+1 is for one more section which only contains 1 cell "Add Section"
+        return sectionList.count+1
+    }
+    
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        if section < sectionList.count {
+            return sectionList[section].name
+        } else {
+            return nil
+        }
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return exerciseList.count
+        if section < sectionList.count {
+            //+1 is for one more cell which is "Add Exercise"
+            return sectionList[section].exercise!.count+1
+        } else {
+            return 1
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: ExerciseTableViewCell.identifier, for: indexPath) as! ExerciseTableViewCell
-        cell.selectionStyle = .none
-//        cell.nameLabel.text = exerciseList[indexPath.row].name
-        return cell
+        switch indexPath.section {
+        case 0..<sectionList.count: //normal cell
+            if indexPath.row < sectionList[indexPath.section].exercise!.count {
+                let cell = tableView.dequeueReusableCell(withIdentifier: ExerciseTableViewCell.identifier, for: indexPath) as! ExerciseTableViewCell
+                cell.selectionStyle = .none
+                cell.nameLabel.text = (sectionList[indexPath.section].exercise![indexPath.row] as! Exercise).name
+                return cell
+            } else { //add exercise cell
+                let cell = tableView.dequeueReusableCell(withIdentifier: AddExerciseTableViewCell.identifier, for: indexPath) as! AddExerciseTableViewCell
+                cell.selectionStyle = .none
+                cell.nameLabel.text = NSLocalizedString("Add Exercise", comment: "")
+                return cell
+            }
+        default: //add section cell
+            let cell = tableView.dequeueReusableCell(withIdentifier: AddExerciseTableViewCell.identifier, for: indexPath) as! AddExerciseTableViewCell
+            cell.selectionStyle = .none
+            cell.nameLabel.text = NSLocalizedString("Add Section", comment: "")
+            return cell
+        }
+        
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        if (editingStyle == UITableViewCellEditingStyle.delete) {
+            let section = sectionList[indexPath.section]
+            let exercise = section.exercise![indexPath.row] as! Exercise
+            CoreDataService.deleteExercise(exercise: exercise)
+            tableView.reloadData()
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        switch indexPath.section {
+        case 0..<sectionList.count: //add one more exercise in current section
+            if indexPath.row == sectionList[indexPath.section].exercise!.count {
+                print("add one exercise")
+            }
+        default: //add one more section
+            print("add one section")
+        }
     }
 }
 
@@ -136,6 +199,51 @@ class ExerciseTableViewCell: UITableViewCell {
         mainView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -5).isActive = true
         mainView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -5).isActive = true
         mainView.heightAnchor.constraint(equalToConstant: 100).isActive = true
+        
+        nameLabel.centerYAnchor.constraint(equalTo: mainView.centerYAnchor).isActive = true
+        nameLabel.leadingAnchor.constraint(equalTo: mainView.leadingAnchor, constant: 20).isActive = true
+        nameLabel.trailingAnchor.constraint(equalTo: mainView.trailingAnchor, constant: -20).isActive = true
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+}
+
+//MARK: - MyPlansTableViewCell
+class AddExerciseTableViewCell: UITableViewCell {
+    
+    static let identifier = "AddExerciseTableViewCell"
+    
+    var mainView: UIView!
+    var nameLabel: UILabel!
+    
+    override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
+        mainView = UIView()
+        mainView.translatesAutoresizingMaskIntoConstraints = false
+        mainView.layer.cornerRadius = 3
+        mainView.layer.borderWidth = 2
+        contentView.addSubview(mainView)
+        
+        nameLabel = UILabel()
+        nameLabel.translatesAutoresizingMaskIntoConstraints = false
+        nameLabel.adjustsFontSizeToFitWidth = true
+        nameLabel.font = UIFont.boldSystemFont(ofSize: 17)
+        nameLabel.textAlignment = .center
+        nameLabel.textColor = Constants.Colors.red
+        mainView.addSubview(nameLabel)
+        
+        setConstraints()
+    }
+    
+    func setConstraints() {
+        //MARK: - Constraints
+        mainView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 5).isActive = true
+        mainView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 5).isActive = true
+        mainView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -5).isActive = true
+        mainView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -5).isActive = true
+        mainView.heightAnchor.constraint(equalToConstant: 50).isActive = true
         
         nameLabel.centerYAnchor.constraint(equalTo: mainView.centerYAnchor).isActive = true
         nameLabel.leadingAnchor.constraint(equalTo: mainView.leadingAnchor, constant: 20).isActive = true

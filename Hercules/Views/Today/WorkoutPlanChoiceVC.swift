@@ -121,7 +121,8 @@ extension WorkoutPlanChoiceVC {
 extension WorkoutPlanChoiceVC {
     //TO DO: move to presenter later
     func fetchWorkoutDataFromCoreData() {
-        workoutList = CoreDataService.getMyWorkoutPlan()
+//        workoutList = CoreDataService.getMyWorkoutPlan()
+        workoutList = CoreDataService.getWorkoutTemplates()
         myPlansTableView.reloadData()
     }
     
