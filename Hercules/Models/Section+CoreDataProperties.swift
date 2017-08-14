@@ -16,6 +16,7 @@ extension Section {
         return NSFetchRequest<Section>(entityName: "Section")
     }
 
+    @NSManaged public var created_date: NSDate?
     @NSManaged public var name: String?
     @NSManaged public var index: Int32
     @NSManaged public var exercise: NSOrderedSet?

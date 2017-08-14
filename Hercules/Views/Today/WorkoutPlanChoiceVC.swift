@@ -130,7 +130,11 @@ extension WorkoutPlanChoiceVC {
         if let indexPath = sender as? IndexPath {
             if segue.identifier == "createNewWorkoutSegue" {
                 let destVC = segue.destination as! CreateNewWorkoutVC
-                destVC.workout = workoutList[indexPath.row]
+                let newWorkout = CoreDataService.deepCopyWorkout(workout: workoutList[indexPath.row])
+                newWorkout.created_date = NSDate()
+                newWorkout.template_flag = false
+                destVC.workout = newWorkout
+//                CoreDataService.addWorkout(workout: newWorkout)
             }
         }
         

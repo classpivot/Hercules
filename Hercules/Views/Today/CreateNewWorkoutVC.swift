@@ -34,6 +34,7 @@ class CreateNewWorkoutVC: UIViewController {
         }
         workoutNameTextFieldInit()
         exerciseTableViewInit()
+        startButtonInit()
     }
     
     deinit {
@@ -79,7 +80,25 @@ extension CreateNewWorkoutVC {
         exerciseTableView.topAnchor.constraint(equalTo: workoutNameTextField.bottomAnchor, constant: 30).isActive = true
         exerciseTableView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 0).isActive = true
         exerciseTableView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: 0).isActive = true
-        exerciseTableView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: -60).isActive = true
+    }
+    
+    fileprivate func startButtonInit() {
+        let startButton = UIButton()
+        startButton.setTitle(NSLocalizedString("Start", comment: ""), for: .normal)
+        startButton.setTitleColor(Constants.Colors.darkGray, for: UIControlState())
+        startButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 23)
+        startButton.layer.cornerRadius = 5
+        startButton.layer.borderColor = Constants.Colors.darkGray.cgColor
+        startButton.layer.borderWidth = 1
+        startButton.addTarget(self, action: #selector(self.createButtonClicked), for: UIControlEvents.touchUpInside)
+        startButton.translatesAutoresizingMaskIntoConstraints = false
+        self.view.addSubview(startButton)
+        
+        startButton.topAnchor.constraint(equalTo: exerciseTableView.bottomAnchor, constant: 20).isActive = true
+        startButton.centerXAnchor.constraint(equalTo: self.view.centerXAnchor, constant: 0).isActive = true
+        startButton.widthAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 0.6, constant: 0).isActive = true
+        startButton.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: -80).isActive = true
+        startButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
     }
 }
 
@@ -163,6 +182,10 @@ extension CreateNewWorkoutVC: UITextFieldDelegate {
 extension CreateNewWorkoutVC {
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         workoutNameTextField.resignFirstResponder()
+    }
+    
+    func createButtonClicked() {
+        print("Start")
     }
 }
 

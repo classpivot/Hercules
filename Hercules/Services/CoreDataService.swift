@@ -61,6 +61,57 @@ class CoreDataService {
         return []
     }
     
+    //deep copy a workout
+    static func deepCopyWorkout(workout: Workout) -> Workout {
+        let workoutEntity = NSEntityDescription.entity(forEntityName: "Workout", in: managedContext)
+        let sectionEntity = NSEntityDescription.entity(forEntityName: "Section", in: managedContext)
+        let exerciseEntity = NSEntityDescription.entity(forEntityName: "Exercise", in: managedContext)
+        
+        let newWorkout = Workout(entity: workoutEntity!, insertInto: managedContext)
+        newWorkout.name = workout.name
+        newWorkout.created_date = NSDate()
+        newWorkout.body_parts = workout.body_parts
+        let newSectionList = newWorkout.mutableOrderedSetValue(forKey: "section")
+        if let sections = workout.section {
+            //hard copy all sections
+            for section in sections {
+                let newSection = Section(entity: sectionEntity!, insertInto: managedContext)
+                let newExerciseList = newSection.mutableOrderedSetValue(forKey: "exercise")
+                newSection.created_date = NSDate()
+                newSection.name = (section as! Section).name
+                newSection.index = (section as! Section).index
+                if let exercises = (section as! Section).exercise {
+                    //hard copy all exercises in each section
+                    for exercise in exercises {
+                        let newExercise = Exercise(entity: exerciseEntity!, insertInto: managedContext)
+                        newExercise.created_date = NSDate()
+                        newExercise.name = (exercise as! Exercise).name
+                        newExercise.weight = (exercise as! Exercise).weight
+                        newExercise.reps = (exercise as! Exercise).reps
+                        newExerciseList.add(newExercise)
+                    }
+                }
+                newSectionList.add(newSection)
+            }
+        }
+//        do {
+//            try newWorkout.managedObjectContext?.save()
+//        } catch {
+//            let saveError = error as NSError
+//            print(saveError)
+//        }
+        return newWorkout
+    }
+    
+    //add new workout into core data
+    static func addWorkout(workout: Workout) {
+        do {
+            try workout.managedObjectContext?.save()
+        } catch {
+            print(error)
+        }
+    }
+    
     //Internal use for creating workout template
     static func createWorkoutTemplateChest() {
         let workoutEntity = NSEntityDescription.entity(forEntityName: "Workout", in: managedContext)
@@ -245,7 +296,6 @@ class CoreDataService {
     }
     
     static func updateWorkout(workout: Workout) {
-        workout.name = "New Workout Test 1"
         do {
             try workout.managedObjectContext?.save()
         } catch {
