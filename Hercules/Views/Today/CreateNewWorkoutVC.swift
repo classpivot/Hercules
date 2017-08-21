@@ -186,6 +186,12 @@ extension CreateNewWorkoutVC {
     
     func createButtonClicked() {
         print("Start")
+        do {
+            try workout.managedObjectContext?.save()
+        } catch {
+            let saveError = error as NSError
+            print(saveError)
+        }
     }
 }
 
