@@ -12,6 +12,7 @@ import CoreData
 class NewWorkoutVC: UIViewController {
 
     var workoutNameLabel: UILabel!
+    var separatorBar: UIView!
     var startNewView: UIView!
     var exerciseTableView: UITableView!
     
@@ -37,6 +38,7 @@ class NewWorkoutVC: UIViewController {
         if workout == nil {
             workoutNameLabel.isHidden = true
             exerciseTableView.isHidden = true
+            separatorBar.isHidden = true
             startNewView.isHidden = false
         } else {
             if let sections = workout!.section {
@@ -48,6 +50,7 @@ class NewWorkoutVC: UIViewController {
             exerciseTableView.reloadData()
             workoutNameLabel.isHidden = false
             exerciseTableView.isHidden = false
+            separatorBar.isHidden = false
             startNewView.isHidden = true
         }
         
@@ -90,20 +93,20 @@ extension NewWorkoutVC {
         workoutNameLabel.translatesAutoresizingMaskIntoConstraints = false
         self.view.addSubview(workoutNameLabel)
         
-        let separator = UIView()
-        separator.backgroundColor = Constants.Colors.darkGray
-        separator.translatesAutoresizingMaskIntoConstraints = false
-        self.view.addSubview(separator)
+        separatorBar = UIView()
+        separatorBar.backgroundColor = Constants.Colors.darkGray
+        separatorBar.translatesAutoresizingMaskIntoConstraints = false
+        self.view.addSubview(separatorBar)
         
         workoutNameLabel.topAnchor.constraint(equalTo: topLayoutGuide.bottomAnchor, constant: 30).isActive = true
         workoutNameLabel.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 20).isActive = true
         workoutNameLabel.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -20).isActive = true
         workoutNameLabel.heightAnchor.constraint(equalToConstant: 50).isActive = true
         
-        separator.topAnchor.constraint(equalTo: workoutNameLabel.bottomAnchor, constant: 20).isActive = true
-        separator.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 20).isActive = true
-        separator.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -20).isActive = true
-        separator.heightAnchor.constraint(equalToConstant: 1).isActive = true
+        separatorBar.topAnchor.constraint(equalTo: workoutNameLabel.bottomAnchor, constant: 20).isActive = true
+        separatorBar.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 20).isActive = true
+        separatorBar.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -20).isActive = true
+        separatorBar.heightAnchor.constraint(equalToConstant: 1).isActive = true
     }
     
     //If no workout today, display this view
