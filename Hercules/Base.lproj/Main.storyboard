@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="dCS-sp-fID">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BB1-A7-epV">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -61,12 +61,53 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <connections>
-                        <segue destination="dCS-sp-fID" kind="show" identifier="loginSuccessSegue" id="Xt7-qm-QTM"/>
+                        <segue destination="dCS-sp-fID" kind="show" identifier="loginToMainSegue" id="Xt7-qm-QTM"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1nQ-QD-JzN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1222" y="-67"/>
+            <point key="canvasLocation" x="-1239" y="676"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="w4y-lT-qI5">
+            <objects>
+                <viewController id="qXj-HQ-xd2" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="ATc-xJ-Ria"/>
+                        <viewControllerLayoutGuide type="bottom" id="Hqo-tI-eya"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Isd-bP-fwV">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="aTw-v1-wNF" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1233" y="-746"/>
+        </scene>
+        <!--WelcomeVC-->
+        <scene sceneID="jM2-YK-cfI">
+            <objects>
+                <viewController id="BB1-A7-epV" customClass="WelcomeVC" customModule="Hercules" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="QMg-5t-w3D"/>
+                        <viewControllerLayoutGuide type="bottom" id="tsa-cd-CS7"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="cl9-iL-AaP">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <connections>
+                        <segue destination="dCS-sp-fID" kind="show" identifier="WelcomeToMainSegue" id="1YJ-dj-bTC"/>
+                        <segue destination="qXj-HQ-xd2" kind="show" identifier="WelcomeToSignupSegue" id="WqW-Dm-NoX"/>
+                        <segue destination="HpJ-RZ-eNP" kind="show" identifier="WelcomeToLoginSegue" id="xaG-Db-e9Z"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="vCd-jH-dyH" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1239" y="-67"/>
         </scene>
         <!--Main Tab Bar Controller-->
         <scene sceneID="LAv-0T-4IW">
@@ -102,7 +143,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="U12-l3-rln"/>
                     <connections>
-                        <segue destination="kJ0-aH-2qc" kind="show" identifier="workoutTypeSegue" id="8sF-Bg-IpA"/>
+                        <segue destination="kJ0-aH-2qc" kind="show" identifier="NewWorkoutToWorkTypeSegue" id="8sF-Bg-IpA"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="soD-Ef-RJX" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -123,7 +164,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <connections>
-                        <segue destination="s01-4Y-fFi" kind="show" identifier="workoutPlanChoiceSegue" id="p9B-5d-Ynm"/>
+                        <segue destination="s01-4Y-fFi" kind="show" identifier="WorkoutTypeToWorkoutPlanChoiceSegue" id="p9B-5d-Ynm"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ppH-7w-Kwx" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -144,7 +185,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <connections>
-                        <segue destination="3iz-JZ-peU" kind="show" identifier="createNewWorkoutSegue" id="ga3-pj-kFq"/>
+                        <segue destination="3iz-JZ-peU" kind="show" identifier="WorkoutPlanChoiceToCreateNewWorkoutSegue" id="ga3-pj-kFq"/>
                         <segue destination="vNW-V0-Fp2" kind="show" identifier="workoutTemplateSegue" id="f2g-PL-Gw3"/>
                     </connections>
                 </viewController>
@@ -254,4 +295,7 @@
         <image name="records_30x30" width="30" height="30"/>
         <image name="records_filled_30x30" width="30" height="30"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="1YJ-dj-bTC"/>
+    </inferredMetricsTieBreakers>
 </document>

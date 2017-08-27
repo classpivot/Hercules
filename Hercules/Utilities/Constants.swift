@@ -21,6 +21,7 @@ struct Constants {
         static let gray = UIColor(red: 209/255.0, green: 211/255.0, blue: 212/255.0, alpha: 1.0)
         static let darkGray = UIColor(red: 90/255.0, green: 90/255.0, blue: 90/255.0, alpha: 1.0)
         static let pink = UIColor(red: 253/255.0, green: 137/255.0, blue: 137/255.0, alpha: 1.0)
+        static let icon_navyblue = UIColor(red: 3/255.0, green: 63/255.0, blue: 94/255.0, alpha: 1.0)
     }
     
     static let bodyParts = ["Chest", "Back", "Arms", "Shoulder", "Legs", "Glutes", "Core", "Cardio"]

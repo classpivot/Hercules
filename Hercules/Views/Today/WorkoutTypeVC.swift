@@ -65,7 +65,7 @@ extension WorkoutTypeVC {
 //MARK: - Button actions
 extension WorkoutTypeVC {
     func nextStepButtonClicked() {
-        self.performSegue(withIdentifier: "workoutPlanChoiceSegue", sender: nil)
+        self.performSegue(withIdentifier: "WorkoutTypeToWorkoutPlanChoiceSegue", sender: nil)
     }
 }
 

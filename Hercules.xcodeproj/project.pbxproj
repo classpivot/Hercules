@@ -32,6 +32,7 @@
 		927757E21F3A2A8600A3AF56 /* Body.swift in Sources */ = {isa = PBXBuildFile; fileRef = 927757E11F3A2A8600A3AF56 /* Body.swift */; };
 		927757EC1F3A31A800A3AF56 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 927757EB1F3A31A800A3AF56 /* MainTabBarController.swift */; };
 		C815EB2D8E3F017392761EC8 /* Pods_Hercules.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 067F08225C550F463D6FFCF8 /* Pods_Hercules.framework */; };
+		D3B2D1C01F5303A400DE112E /* WelcomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3B2D1BF1F5303A400DE112E /* WelcomeVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -85,6 +86,7 @@
 		927757DF1F3A2A5F00A3AF56 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Constants.swift; path = Utilities/Constants.swift; sourceTree = "<group>"; };
 		927757E11F3A2A8600A3AF56 /* Body.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Body.swift; path = Models/Body.swift; sourceTree = "<group>"; };
 		927757EB1F3A31A800A3AF56 /* MainTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MainTabBarController.swift; path = Views/MainTabBarController.swift; sourceTree = "<group>"; };
+		D3B2D1BF1F5303A400DE112E /* WelcomeVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WelcomeVC.swift; path = "Views/Signup&Login/WelcomeVC.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -206,7 +208,7 @@
 			isa = PBXGroup;
 			children = (
 				927757EB1F3A31A800A3AF56 /* MainTabBarController.swift */,
-				927757D21F3A29FF00A3AF56 /* Login */,
+				927757D21F3A29FF00A3AF56 /* Signup&Login */,
 				927757D11F3A29F700A3AF56 /* Profile */,
 				927757D01F3A29F000A3AF56 /* Today */,
 				927757CF1F3A29E800A3AF56 /* Dashboard */,
@@ -257,11 +259,12 @@
 			name = Profile;
 			sourceTree = "<group>";
 		};
-		927757D21F3A29FF00A3AF56 /* Login */ = {
+		927757D21F3A29FF00A3AF56 /* Signup&Login */ = {
 			isa = PBXGroup;
 			children = (
+				D3B2D1BF1F5303A400DE112E /* WelcomeVC.swift */,
 			);
-			name = Login;
+			name = "Signup&Login";
 			sourceTree = "<group>";
 		};
 		DB5F797ECDFCB39ADAFBA074 /* Frameworks */ = {
@@ -469,6 +472,7 @@
 				927757DB1F3A2A2A00A3AF56 /* WorkoutPlanChoiceVC.swift in Sources */,
 				927757CE1F3A29D900A3AF56 /* CoreDataService.swift in Sources */,
 				927757E01F3A2A5F00A3AF56 /* Constants.swift in Sources */,
+				D3B2D1C01F5303A400DE112E /* WelcomeVC.swift in Sources */,
 				927757DC1F3A2A2A00A3AF56 /* WorkoutTypeVC.swift in Sources */,
 				927757EC1F3A31A800A3AF56 /* MainTabBarController.swift in Sources */,
 				922585D01F3E7817004F7515 /* Workout+CoreDataClass.swift in Sources */,

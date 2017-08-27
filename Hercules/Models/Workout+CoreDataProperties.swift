@@ -20,6 +20,7 @@ extension Workout {
     @NSManaged public var created_date: NSDate?
     @NSManaged public var name: String?
     @NSManaged public var template_flag: Bool
+    @NSManaged public var done_flag: Bool
     @NSManaged public var section: NSOrderedSet?
 
 }

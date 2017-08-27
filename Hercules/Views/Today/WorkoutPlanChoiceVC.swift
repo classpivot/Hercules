@@ -128,11 +128,12 @@ extension WorkoutPlanChoiceVC {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let indexPath = sender as? IndexPath {
-            if segue.identifier == "createNewWorkoutSegue" {
+            if segue.identifier == "WorkoutPlanChoiceToCreateNewWorkoutSegue" {
                 let destVC = segue.destination as! CreateNewWorkoutVC
                 let newWorkout = CoreDataService.deepCopyWorkout(workout: workoutList[indexPath.row])
                 newWorkout.created_date = NSDate()
                 newWorkout.template_flag = false
+                newWorkout.done_flag = false
                 destVC.workout = newWorkout
 //                CoreDataService.addWorkout(workout: newWorkout)
             }

@@ -32,8 +32,8 @@ class NewWorkoutVC: UIViewController {
 //        CoreDataService.createWorkoutTemplateBS()
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         workout = CoreDataService.getTodayWorkoutData()
         if workout == nil {
             workoutNameLabel.isHidden = true
@@ -171,10 +171,11 @@ extension NewWorkoutVC {
         exerciseTableView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: -60).isActive = true
     }
 }
-//MARK: - Button action
+
+//MARK: - User Interactions
 extension NewWorkoutVC {
     func createNewButtonClicked() {
-        self.performSegue(withIdentifier: "workoutTypeSegue", sender: nil)
+        self.performSegue(withIdentifier: "NewWorkoutToWorkTypeSegue", sender: nil)
     }
 }
 

@@ -88,6 +88,7 @@ class CoreDataService {
                         newExercise.name = (exercise as! Exercise).name
                         newExercise.weight = (exercise as! Exercise).weight
                         newExercise.reps = (exercise as! Exercise).reps
+                        newExercise.done_flag = false
                         newExerciseList.add(newExercise)
                     }
                 }

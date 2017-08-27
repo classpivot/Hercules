@@ -21,5 +21,5 @@ extension Exercise {
     @NSManaged public var reps: Int32
     @NSManaged public var weight: Double
     @NSManaged public var section: Section?
-
+    @NSManaged public var done_flag: Bool
 }
