@@ -4,6 +4,10 @@ use_frameworks!
 
 target ‘Hercules’ do
     pod 'SwiftyJSON'
+    pod 'Firebase/Core'
+    pod 'Firebase/Auth'
+    pod 'Firebase/Storage'
+    pod 'Firebase/Database'
 end
 
 post_install do |installer|

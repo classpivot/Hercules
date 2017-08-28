@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreData
+import FBSDKCoreKit
 
 var device_width: CGFloat = 0
 var device_height: CGFloat = 0
@@ -18,13 +19,18 @@ var tabbar_height: CGFloat = 60
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-
+    let userDefaults = UserDefaults.standard
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         UIApplication.shared.statusBarStyle = .lightContent
         device_width = UIScreen.main.bounds.size.width
         device_height = UIScreen.main.bounds.size.height
+//        if let needLogin = userDefaults.object(forKey: Constants.UserDefaults.KEY_NEED_LOGIN) as? Bool {
+//            if !needLogin {
+//                self.processToMainPage()
+//            }
+//        }
         
         //setting up navigation bar appearance
         UINavigationBar.appearance().titleTextAttributes = [
@@ -49,7 +55,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UITabBarItem.appearance().setTitleTextAttributes([NSForegroundColorAttributeName: UIColor.white], for: .selected)
         UITabBarItem.appearance().titlePositionAdjustment = UIOffset(horizontal: 0, vertical: -4)
         
-        return true
+        return FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
+    }
+    
+    func application(_ application: UIApplication, open url: URL, sourceApplication: String?, annotation: Any) -> Bool {
+        return FBSDKApplicationDelegate.sharedInstance().application(application, open: url, sourceApplication: sourceApplication, annotation: annotation)
     }
 
     func applicationWillResignActive(_ application: UIApplication) {
@@ -120,6 +130,32 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
         }
     }
+    
+    func processToMainPage() {
+        userDefaults.set(false, forKey: Constants.UserDefaults.KEY_NEED_LOGIN)
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let mainVc = storyboard.instantiateViewController(withIdentifier: "mainTab")
+        if let window = self.window {
+            window.rootViewController = mainVc
+        }
+    }
 
+    func cleanUserInfo(_ window: UIWindow){
+        let appDomain = Bundle.main.bundleIdentifier
+        let rememberEmail = userDefaults.string(forKey: Constants.UserDefaults.KEY_EMAIL)
+        userDefaults.removePersistentDomain(forName: appDomain!)
+        userDefaults.set(rememberEmail, forKey: Constants.UserDefaults.KEY_EMAIL)
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let startVc = storyboard.instantiateViewController(withIdentifier: "rootNav")
+        window.rootViewController = startVc
+    }
+    
+    func logout(){
+        if let window = self.window{
+            UIView.transition(with: window, duration: 0.5, options: UIViewAnimationOptions.transitionFlipFromLeft, animations: {
+                self.cleanUserInfo(window)
+            }, completion: nil)
+        }
+    }
 }
 

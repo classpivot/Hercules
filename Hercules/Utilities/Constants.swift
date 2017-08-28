@@ -24,6 +24,38 @@ struct Constants {
         static let icon_navyblue = UIColor(red: 3/255.0, green: 63/255.0, blue: 94/255.0, alpha: 1.0)
     }
     
+    struct UserDefaults {
+        static let KEY_EMAIL = "email"
+        static let KEY_UID = "user_id"
+        static let KEY_FB_EMAIL = "fb_email"
+        static let KEY_FB_ID = "fb_id"
+        static let KEY_GOOGLE_EMAIL = "google_email"
+        static let KEY_DEVICE_TOKEN = "device_token"
+        static let KEY_ACCESS_TOKEN = "access_token"
+        static let KEY_ACCESS_TOKEN_EXPIRE = "access_token_expires_in"
+        static let KEY_REFRESH_TOKEN = "refresh_token"
+        static let KEY_REFRESH_TOKEN_EXPIRE = "refresh_token_expires_in"
+        static let KEY_TOTAL_REWARD = "total_reward"
+        static let KEY_UPDATED_TIME = "updated_time"
+        
+        static let KEY_PORTRAIT = "portrait"
+        static let KEY_PORTRAIT_URL = "portrait_url"
+        static let KEY_FIRST_NAME = "first_name"
+        static let KEY_LAST_NAME = "last_name"
+        static let KEY_NICKNAME = "nickname"
+        static let KEY_WHATSUP = "whatsup"
+        static let KEY_BIRTHDAY = "birthday"
+        static let KEY_GENDER = "gender"
+        static let KEY_PASSWORD = "password"
+        static let KEY_PHONE_NUMBER = "phone_number"
+        static let KEY_CITY = "city"
+        static let KEY_STATE = "state"
+        static let KEY_COUNTRY = "country"
+        static let KEY_ZIP_CODE = "zip_code"
+        
+        static let KEY_NEED_LOGIN = "need_login"
+    }
+    
     static let bodyParts = ["Chest", "Back", "Arms", "Shoulder", "Legs", "Glutes", "Core", "Cardio"]
 }
 

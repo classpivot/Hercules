@@ -7,13 +7,24 @@
 //
 
 import UIKit
+import FBSDKLoginKit
+import SwiftyJSON
+import Firebase
 
 class WelcomeVC: UIViewController {
+    
+    var email = ""
+    var password = ""
+    var alertView:UIAlertController?
+    let userDefaults = UserDefaults.standard
+    var fbResult: JSON? = nil
+    let appDelegate = UIApplication.shared.delegate as! AppDelegate
 
     override func viewDidLoad() {
         super.viewDidLoad()
                 
         UIApplication.shared.statusBarStyle = .default
+        self.navigationController?.navigationBar.isHidden = true
         
         skipButtonInit()
         iconImageViewInit()
@@ -75,7 +86,7 @@ extension WelcomeVC {
         let fbLoginButton = UIButton()
         fbLoginButton.setTitle("Facebook", for: .normal)
         fbLoginButton.setTitleColor(UIColor.black, for: .normal)
-        fbLoginButton.addTarget(self, action: #selector(self.skipButtonClicked), for: .touchUpInside)
+        fbLoginButton.addTarget(self, action: #selector(self.fbLoginbuttonClicked), for: .touchUpInside)
         fbLoginButton.backgroundColor = UIColor.red
         fbLoginButton.translatesAutoresizingMaskIntoConstraints = false
         self.view.addSubview(fbLoginButton)
@@ -97,7 +108,7 @@ extension WelcomeVC {
         let loginButton = UIButton()
         loginButton.setTitle("LOG IN", for: .normal)
         loginButton.setTitleColor(Constants.Colors.icon_navyblue, for: .normal)
-        loginButton.addTarget(self, action: #selector(self.skipButtonClicked), for: .touchUpInside)
+        loginButton.addTarget(self, action: #selector(self.loginButtonClicked), for: .touchUpInside)
         loginButton.translatesAutoresizingMaskIntoConstraints = false
         self.view.addSubview(loginButton)
         
@@ -124,5 +135,97 @@ extension WelcomeVC {
 extension WelcomeVC {
     @objc fileprivate func skipButtonClicked() {
         self.performSegue(withIdentifier: "WelcomeToMainSegue", sender: nil)
+    }
+    
+    @objc fileprivate func fbLoginbuttonClicked() {
+        let fbLoginManager = FBSDKLoginManager()
+        fbLoginManager.logIn(withReadPermissions: ["public_profile", "email", "user_friends"], from: self) { (result, error) -> Void in
+            if (error == nil){
+                let fbLoginResult = result
+                if (fbLoginResult?.grantedPermissions.contains("email"))! {
+                    self.loginWithFB()
+                }
+            }
+        }
+    }
+    
+    @objc fileprivate func loginButtonClicked() {
+        appDelegate.processToMainPage()
+    }
+}
+
+//MARK: - Helper functions
+extension WelcomeVC {
+    fileprivate func loginWithFB(){
+        guard (FBSDKAccessToken.current()) != nil else {
+            return
+        }
+        FBSDKGraphRequest(graphPath: "me", parameters: ["fields": "gender, id, name, first_name, last_name, picture.type(large), email"]).start(completionHandler: { (connection, result, error) -> Void in
+            guard error == nil else {
+                print(error!.localizedDescription)
+                let alert = UIAlertController(title: "Facebook login failed!", message: "Please signup your own account and try again.", preferredStyle: UIAlertControllerStyle.alert)
+                alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.cancel, handler:nil))
+                self.present(alert, animated: true, completion: nil)
+                return
+            }
+            
+            self.fbResult = JSON(result!)
+            if let fbEmail = self.fbResult!["email"].string {
+                self.userDefaults.setValue(fbEmail, forKey: Constants.UserDefaults.KEY_FB_EMAIL)
+                self.password = self.getRandomSecurePassword()
+                Auth.auth().createUser(withEmail: fbEmail, password: self.password) { [weak self] (user, error) in
+                    let credential = FacebookAuthProvider.credential(withAccessToken: FBSDKAccessToken.current().tokenString)
+                    guard error == nil else {
+                        print(error!.localizedDescription)
+                        Auth.auth().signIn(with: credential) { (user, error) in
+                            guard error == nil else {
+                                print(error!.localizedDescription)
+                                let alert = UIAlertController(title: "Facebook login failed!", message: "Please signup your own account and try again.", preferredStyle: UIAlertControllerStyle.alert)
+                                alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.cancel, handler:nil))
+                                self?.present(alert, animated: true, completion: nil)
+                                return
+                            }
+//                            self.saveFbData()
+                            self?.appDelegate.processToMainPage()
+                        }
+                        return
+                    }
+                    self?.userDefaults.set(fbEmail, forKey: Constants.UserDefaults.KEY_EMAIL)
+                    self?.userDefaults.set(self?.password, forKey: Constants.UserDefaults.KEY_PASSWORD)
+                    user!.link(with: credential) { (user, error) in
+                        guard error == nil else {
+                            print(error!.localizedDescription)
+//                            self.saveFbData()
+                            return
+                        }
+                        print("Connect account with FB!")
+                        let changeRequest = user!.createProfileChangeRequest()
+                        if let fbName = self?.fbResult!["name"].string {
+                            self?.userDefaults.setValue(fbName, forKey: Constants.UserDefaults.KEY_NICKNAME)
+                            changeRequest.displayName = fbName
+                        }
+                        if let fbPictureUrl = self?.fbResult!["picture"]["data"]["url"].string {
+                            self?.userDefaults.setValue(fbPictureUrl, forKey: Constants.UserDefaults.KEY_PORTRAIT_URL)
+                            //changeRequest.photoURL = fbPictureUrl
+                        }
+                        changeRequest.commitChanges { error in
+                            if let error = error {
+                                print(error.localizedDescription)
+                            }
+                            // Profile updated.
+                        }
+                    }
+                    //                        self.saveFbData()
+                    //                        self.appDelegate.processToMainPage()
+                }
+            }
+            print("only return once")
+        })
+        
+    }
+    
+    func getRandomSecurePassword() -> String {
+        return "123456"
+        //TODO: create random password
     }
 }
