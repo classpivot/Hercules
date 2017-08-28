@@ -31,6 +31,7 @@
 		927757E01F3A2A5F00A3AF56 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 927757DF1F3A2A5F00A3AF56 /* Constants.swift */; };
 		927757E21F3A2A8600A3AF56 /* Body.swift in Sources */ = {isa = PBXBuildFile; fileRef = 927757E11F3A2A8600A3AF56 /* Body.swift */; };
 		927757EC1F3A31A800A3AF56 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 927757EB1F3A31A800A3AF56 /* MainTabBarController.swift */; };
+		92A8E5511F549C6200284AE0 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 92A8E5501F549C6200284AE0 /* GoogleService-Info.plist */; };
 		C815EB2D8E3F017392761EC8 /* Pods_Hercules.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 067F08225C550F463D6FFCF8 /* Pods_Hercules.framework */; };
 		D3B2D1C01F5303A400DE112E /* WelcomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3B2D1BF1F5303A400DE112E /* WelcomeVC.swift */; };
 		D3B2D1C51F53C4DD00DE112E /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D3B2D1C11F53C4DD00DE112E /* Bolts.framework */; };
@@ -90,6 +91,7 @@
 		927757DF1F3A2A5F00A3AF56 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Constants.swift; path = Utilities/Constants.swift; sourceTree = "<group>"; };
 		927757E11F3A2A8600A3AF56 /* Body.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Body.swift; path = Models/Body.swift; sourceTree = "<group>"; };
 		927757EB1F3A31A800A3AF56 /* MainTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MainTabBarController.swift; path = Views/MainTabBarController.swift; sourceTree = "<group>"; };
+		92A8E5501F549C6200284AE0 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		D3B2D1BF1F5303A400DE112E /* WelcomeVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WelcomeVC.swift; path = "Views/Signup&Login/WelcomeVC.swift"; sourceTree = "<group>"; };
 		D3B2D1C11F53C4DD00DE112E /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bolts.framework; sourceTree = "<group>"; };
 		D3B2D1C21F53C4DD00DE112E /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKCoreKit.framework; sourceTree = "<group>"; };
@@ -172,6 +174,7 @@
 				927757CB1F3A299500A3AF56 /* Presenters */,
 				927757CA1F3A298D00A3AF56 /* Views */,
 				927757C91F3A298200A3AF56 /* Models */,
+				92A8E54F1F549C0700284AE0 /* Supporting Files */,
 			);
 			path = Hercules;
 			sourceTree = "<group>";
@@ -277,6 +280,14 @@
 				D3B2D1BF1F5303A400DE112E /* WelcomeVC.swift */,
 			);
 			name = "Signup&Login";
+			sourceTree = "<group>";
+		};
+		92A8E54F1F549C0700284AE0 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				92A8E5501F549C6200284AE0 /* GoogleService-Info.plist */,
+			);
+			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
 		DB5F797ECDFCB39ADAFBA074 /* Frameworks */ = {
@@ -403,6 +414,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				927757A51F3A226F00A3AF56 /* LaunchScreen.storyboard in Resources */,
+				92A8E5511F549C6200284AE0 /* GoogleService-Info.plist in Resources */,
 				927757A21F3A226F00A3AF56 /* Assets.xcassets in Resources */,
 				9277579D1F3A226F00A3AF56 /* Main.storyboard in Resources */,
 			);

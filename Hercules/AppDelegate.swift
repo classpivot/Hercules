@@ -9,6 +9,7 @@
 import UIKit
 import CoreData
 import FBSDKCoreKit
+import Firebase
 
 var device_width: CGFloat = 0
 var device_height: CGFloat = 0
@@ -22,6 +23,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     let userDefaults = UserDefaults.standard
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+        // Use Firebase library to configure APIs
+        FirebaseApp.configure()
         // Override point for customization after application launch.
         UIApplication.shared.statusBarStyle = .lightContent
         device_width = UIScreen.main.bounds.size.width

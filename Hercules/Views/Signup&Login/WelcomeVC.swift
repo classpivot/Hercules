@@ -84,18 +84,16 @@ extension WelcomeVC {
     fileprivate func buttonsInit() {
         let buttonWidth = device_width*0.7, buttonHeight = buttonWidth*0.15
         let fbLoginButton = UIButton()
-        fbLoginButton.setTitle("Facebook", for: .normal)
         fbLoginButton.setTitleColor(UIColor.black, for: .normal)
         fbLoginButton.addTarget(self, action: #selector(self.fbLoginbuttonClicked), for: .touchUpInside)
-        fbLoginButton.backgroundColor = UIColor.red
+        fbLoginButton.setBackgroundImage(UIImage(named: "fb_login_button_414x56"), for: .normal)
         fbLoginButton.translatesAutoresizingMaskIntoConstraints = false
         self.view.addSubview(fbLoginButton)
         
         let signUpButton = UIButton()
-        signUpButton.setTitle("Sign Up", for: .normal)
         signUpButton.setTitleColor(UIColor.black, for: .normal)
         signUpButton.addTarget(self, action: #selector(self.skipButtonClicked), for: .touchUpInside)
-        signUpButton.backgroundColor = UIColor.blue
+        signUpButton.setBackgroundImage(UIImage(named: "signup_button_414x56"), for: .normal)
         signUpButton.translatesAutoresizingMaskIntoConstraints = false
         self.view.addSubview(signUpButton)
         
@@ -139,12 +137,13 @@ extension WelcomeVC {
     
     @objc fileprivate func fbLoginbuttonClicked() {
         let fbLoginManager = FBSDKLoginManager()
-        fbLoginManager.logIn(withReadPermissions: ["public_profile", "email", "user_friends"], from: self) { (result, error) -> Void in
-            if (error == nil){
-                let fbLoginResult = result
-                if (fbLoginResult?.grantedPermissions.contains("email"))! {
-                    self.loginWithFB()
-                }
+        fbLoginManager.logIn(withReadPermissions: ["public_profile", "email", "user_friends"], from: self) { [weak self] (result, error) -> Void in
+            guard error == nil else {
+                return
+            }
+            let fbLoginResult = result
+            if (fbLoginResult?.grantedPermissions.contains("email"))! {
+                self?.loginWithFB()
             }
         }
     }
@@ -185,7 +184,7 @@ extension WelcomeVC {
                                 self?.present(alert, animated: true, completion: nil)
                                 return
                             }
-//                            self.saveFbData()
+                            self?.saveFbData()
                             self?.appDelegate.processToMainPage()
                         }
                         return
@@ -195,7 +194,7 @@ extension WelcomeVC {
                     user!.link(with: credential) { (user, error) in
                         guard error == nil else {
                             print(error!.localizedDescription)
-//                            self.saveFbData()
+                            self?.saveFbData()
                             return
                         }
                         print("Connect account with FB!")
@@ -221,6 +220,27 @@ extension WelcomeVC {
             }
             print("only return once")
         })
+        
+    }
+    
+    func saveFbData() {
+        if let fbId = self.fbResult!["id"].string {
+            self.userDefaults.setValue(fbId, forKey: Constants.UserDefaults.KEY_FB_ID)
+            //            self.databaseRef.child("user_info").child((FIRAuth.auth()?.currentUser?.uid)!).setValue(["fb_id" : fbId])
+        }
+        if let fbGender = self.fbResult!["gender"].string {
+            self.userDefaults.setValue(fbGender, forKey: Constants.UserDefaults.KEY_GENDER)
+            //            self.databaseRef.child("user_info").child((FIRAuth.auth()?.currentUser?.uid)!).setValue(["gender" : fbGender])
+        }
+        if let fbFirstName = self.fbResult!["first_name"].string {
+            self.userDefaults.setValue(fbFirstName, forKey: Constants.UserDefaults.KEY_FIRST_NAME)
+        }
+        if let fbLastName = self.fbResult!["last_name"].string {
+            self.userDefaults.setValue(fbLastName, forKey: Constants.UserDefaults.KEY_LAST_NAME)
+        }
+        if let fbPictureUrl = self.fbResult!["picture"]["data"]["url"].string {
+            self.userDefaults.setValue(fbPictureUrl, forKey: Constants.UserDefaults.KEY_PORTRAIT_URL)
+        }
         
     }
     
