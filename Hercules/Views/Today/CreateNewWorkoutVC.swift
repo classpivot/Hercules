@@ -32,9 +32,10 @@ class CreateNewWorkoutVC: UIViewController {
 //                sectionList = sectionList.sorted(by: {$0.index < $1.index})
             }
         }
+        navigationBarInit()
         workoutNameTextFieldInit()
         exerciseTableViewInit()
-        startButtonInit()
+//        startButtonInit()
     }
     
     deinit {
@@ -44,6 +45,28 @@ class CreateNewWorkoutVC: UIViewController {
 
 //MARK: - draw UI
 extension CreateNewWorkoutVC {
+    fileprivate func navigationBarInit() {
+//        navigationItem.title = NSLocalizedString("Today", comment: "")
+        //        //navi left button
+        //        let img = UIImage(named: "menu")!.imageWithColor(UIColor.white)
+        //        menuButton = UIButton(type: .custom);
+        //        menuButton.frame = CGRect(x: 0, y: 0, width: 25, height: 25)
+        //        menuButton.setBackgroundImage(img, for: .normal)
+        //        menuButton.addTarget(self, action: #selector(self.didTapOpenButton(sender:)), for: .touchUpInside)
+        //        let naviLeftButton = UIBarButtonItem()
+        //        naviLeftButton.customView = menuButton
+        //        navigationItem.leftBarButtonItem = naviLeftButton
+
+        //navi right button
+        let saveButton = UIButton(type: .custom)
+        saveButton.frame = CGRect(x: 0, y: 0, width: 40, height: 25)
+        saveButton.setTitle("Save", for: .normal)
+        saveButton.addTarget(self, action: #selector(self.saveButtonClicked), for: .touchUpInside)
+        let naviRightButton = UIBarButtonItem()
+        naviRightButton.customView = saveButton
+        navigationItem.rightBarButtonItem = naviRightButton
+    }
+    
     fileprivate func workoutNameTextFieldInit() {
         workoutNameTextField = UITextField()
         workoutNameTextField.delegate = self
@@ -80,26 +103,27 @@ extension CreateNewWorkoutVC {
         exerciseTableView.topAnchor.constraint(equalTo: workoutNameTextField.bottomAnchor, constant: 30).isActive = true
         exerciseTableView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 0).isActive = true
         exerciseTableView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: 0).isActive = true
+        exerciseTableView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: -60).isActive = true
     }
     
-    fileprivate func startButtonInit() {
-        let startButton = UIButton()
-        startButton.setTitle(NSLocalizedString("Start", comment: ""), for: .normal)
-        startButton.setTitleColor(Constants.Colors.darkGray, for: UIControlState())
-        startButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 23)
-        startButton.layer.cornerRadius = 5
-        startButton.layer.borderColor = Constants.Colors.darkGray.cgColor
-        startButton.layer.borderWidth = 1
-        startButton.addTarget(self, action: #selector(self.createButtonClicked), for: UIControlEvents.touchUpInside)
-        startButton.translatesAutoresizingMaskIntoConstraints = false
-        self.view.addSubview(startButton)
-        
-        startButton.topAnchor.constraint(equalTo: exerciseTableView.bottomAnchor, constant: 20).isActive = true
-        startButton.centerXAnchor.constraint(equalTo: self.view.centerXAnchor, constant: 0).isActive = true
-        startButton.widthAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 0.6, constant: 0).isActive = true
-        startButton.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: -80).isActive = true
-        startButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
-    }
+//    fileprivate func startButtonInit() {
+//        let startButton = UIButton()
+//        startButton.setTitle(NSLocalizedString("Start", comment: ""), for: .normal)
+//        startButton.setTitleColor(Constants.Colors.darkGray, for: UIControlState())
+//        startButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 23)
+//        startButton.layer.cornerRadius = 5
+//        startButton.layer.borderColor = Constants.Colors.darkGray.cgColor
+//        startButton.layer.borderWidth = 1
+//        startButton.addTarget(self, action: #selector(self.createButtonClicked), for: UIControlEvents.touchUpInside)
+//        startButton.translatesAutoresizingMaskIntoConstraints = false
+//        self.view.addSubview(startButton)
+//        
+//        startButton.topAnchor.constraint(equalTo: exerciseTableView.bottomAnchor, constant: 20).isActive = true
+//        startButton.centerXAnchor.constraint(equalTo: self.view.centerXAnchor, constant: 0).isActive = true
+//        startButton.widthAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 0.6, constant: 0).isActive = true
+//        startButton.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: -80).isActive = true
+//        startButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
+//    }
 }
 
 //MARK: - UITableViewDelegate, UITableViewDataSource
@@ -132,7 +156,11 @@ extension CreateNewWorkoutVC: UITableViewDelegate, UITableViewDataSource {
             if indexPath.row < sectionList[indexPath.section].exercise!.count {
                 let cell = tableView.dequeueReusableCell(withIdentifier: ExerciseTableViewCell.identifier, for: indexPath) as! ExerciseTableViewCell
                 cell.selectionStyle = .none
-                cell.nameLabel.text = (sectionList[indexPath.section].exercise![indexPath.row] as! Exercise).name
+                let exercise = (workout.section![indexPath.section] as! Section).exercise![indexPath.row] as! Exercise
+                cell.nameLabel.text = exercise.name
+                exercise.reps = 10
+                cell.weightTextField.text = "\(exercise.weight)"
+                cell.weightTextField.text = "\(exercise.reps)"
                 return cell
             } else { //add exercise cell
                 let cell = tableView.dequeueReusableCell(withIdentifier: AddExerciseTableViewCell.identifier, for: indexPath) as! AddExerciseTableViewCell
@@ -184,10 +212,12 @@ extension CreateNewWorkoutVC {
         workoutNameTextField.resignFirstResponder()
     }
     
-    func createButtonClicked() {
-        print("Start")
+    func saveButtonClicked() {
+        print("Save")
         do {
+            print(((workout.section![0] as! Section).exercise![0] as! Exercise).reps)
             try workout.managedObjectContext?.save()
+            self.navigationController?.popToRootViewController(animated: true)
         } catch {
             let saveError = error as NSError
             print(saveError)

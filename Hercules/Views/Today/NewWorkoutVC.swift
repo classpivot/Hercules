@@ -28,25 +28,20 @@ class NewWorkoutVC: UIViewController {
         workoutNameLabelInit()
         exerciseTableViewInit()
 
-//        CoreDataService.createWorkoutTemplateChest()
-//        CoreDataService.createWorkoutTemplateBS()
+        CoreDataService.createWorkoutTemplateChest()
+        CoreDataService.createWorkoutTemplateBS()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        workout = CoreDataService.getTodayWorkoutData()
+        workout = CoreDataService.getUnfinishedWorkoutData()
         if workout == nil {
             workoutNameLabel.isHidden = true
             exerciseTableView.isHidden = true
             separatorBar.isHidden = true
             startNewView.isHidden = false
         } else {
-            if let sections = workout!.section {
-                for section in sections {
-                    sectionList.append(section as! Section)
-                }
-            }
-            workoutNameLabel.text = workout?.name
+            workoutNameLabel.text = workout!.name
             exerciseTableView.reloadData()
             workoutNameLabel.isHidden = false
             exerciseTableView.isHidden = false
@@ -183,21 +178,22 @@ extension NewWorkoutVC {
 extension NewWorkoutVC: UITableViewDelegate, UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
         //+1 is for one more section which only contains 1 cell "Add Section"
-        return sectionList.count+1
+        print(workout!.section!.count+1)
+        return workout == nil || workout!.section == nil ? 0 : workout!.section!.count+1
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        if section < sectionList.count {
-            return sectionList[section].name
+        if workout != nil && workout!.section != nil && section < workout!.section!.count {
+            return (workout!.section![section] as! Section).name
         } else {
             return nil
         }
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if section < sectionList.count {
+        if workout != nil && workout!.section != nil && section < workout!.section!.count {
             //+1 is for one more cell which is "Add Exercise"
-            return sectionList[section].exercise!.count+1
+            return (workout!.section![section] as! Section).exercise!.count+1
         } else {
             return 1
         }
@@ -206,10 +202,13 @@ extension NewWorkoutVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         switch indexPath.section {
         case 0..<sectionList.count: //normal cell
-            if indexPath.row < sectionList[indexPath.section].exercise!.count {
+            if indexPath.row < (workout!.section![indexPath.section] as! Section).exercise!.count {
                 let cell = tableView.dequeueReusableCell(withIdentifier: ExerciseTableViewCell.identifier, for: indexPath) as! ExerciseTableViewCell
                 cell.selectionStyle = .none
-                cell.nameLabel.text = (sectionList[indexPath.section].exercise![indexPath.row] as! Exercise).name
+                let exercise = (workout!.section![indexPath.section] as! Section).exercise![indexPath.row] as! Exercise
+                cell.nameLabel.text = exercise.name
+                cell.weightTextField.text = "\(exercise.weight)"
+                cell.weightTextField.text = "\(exercise.reps)"
                 return cell
             } else { //add exercise cell
                 let cell = tableView.dequeueReusableCell(withIdentifier: AddExerciseTableViewCell.identifier, for: indexPath) as! AddExerciseTableViewCell
@@ -240,9 +239,11 @@ extension NewWorkoutVC: UITableViewDelegate, UITableViewDataSource {
         case 0..<sectionList.count: //add one more exercise in current section
             if indexPath.row == sectionList[indexPath.section].exercise!.count {
                 print("add one exercise")
+                //TODO: add new exercise
             }
         default: //add one more section
             print("add one section")
+            //TODO: add new section
         }
     }
 }

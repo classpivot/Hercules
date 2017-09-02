@@ -95,7 +95,7 @@ extension WorkoutPlanChoiceVC: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        self.performSegue(withIdentifier: "createNewWorkoutSegue", sender: indexPath)
+        self.performSegue(withIdentifier: "WorkoutPlanChoiceToCreateNewWorkoutSegue", sender: indexPath)
     }
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
@@ -110,10 +110,10 @@ extension WorkoutPlanChoiceVC: UITableViewDelegate, UITableViewDataSource {
 //MARK: - Button actions
 extension WorkoutPlanChoiceVC {
     func createNewButtonClicked() {
-        self.performSegue(withIdentifier: "createNewWorkoutSegue", sender: nil)
+        self.performSegue(withIdentifier: "WorkoutPlanChoiceToCreateNewWorkoutSegue", sender: nil)
     }
     func templateButtonClicked() {
-        self.performSegue(withIdentifier: "workoutTemplateSegue", sender: nil)
+        self.performSegue(withIdentifier: "WorkoutPlanChoiceToWorkoutTemplateSegue", sender: nil)
     }
 }
 

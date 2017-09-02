@@ -187,7 +187,7 @@
                     </view>
                     <connections>
                         <segue destination="3iz-JZ-peU" kind="show" identifier="WorkoutPlanChoiceToCreateNewWorkoutSegue" id="ga3-pj-kFq"/>
-                        <segue destination="vNW-V0-Fp2" kind="show" identifier="workoutTemplateSegue" id="f2g-PL-Gw3"/>
+                        <segue destination="vNW-V0-Fp2" kind="show" identifier="WorkoutPlanChoiceToWorkoutTemplateSegue" id="f2g-PL-Gw3"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BQJ-u4-4KO" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -210,7 +210,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Syx-6w-nQ7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2657" y="599"/>
+            <point key="canvasLocation" x="3596" y="631"/>
         </scene>
         <!--Create New WorkoutVC-->
         <scene sceneID="VLb-7Q-dVP">

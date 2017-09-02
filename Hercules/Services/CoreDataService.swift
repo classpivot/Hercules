@@ -29,6 +29,19 @@ class CoreDataService {
         return nil
     }
     
+    //Get latest workout plan
+    static func getUnfinishedWorkoutData() -> Workout? {
+        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "Workout")
+        fetchRequest.predicate = NSPredicate(format: "done_flag = false")
+        do {
+            let workoutList = try managedContext.fetch(fetchRequest)
+            return workoutList.count > 0 ? (workoutList[0] as! Workout) : nil
+        } catch let error as NSError {
+            print("Could not fetch. \(error), \(error.userInfo)")
+        }
+        return nil
+    }
+    
     //Get last 3 workout records based on body parts
     static func getMyWorkoutPlan() -> [Workout] {
         let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "Workout")
@@ -71,6 +84,7 @@ class CoreDataService {
         newWorkout.name = workout.name
         newWorkout.created_date = NSDate()
         newWorkout.body_parts = workout.body_parts
+        newWorkout.done_flag = false
         let newSectionList = newWorkout.mutableOrderedSetValue(forKey: "section")
         if let sections = workout.section {
             //hard copy all sections
