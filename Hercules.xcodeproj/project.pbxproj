@@ -38,6 +38,8 @@
 		D3B2D1C61F53C4DD00DE112E /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D3B2D1C21F53C4DD00DE112E /* FBSDKCoreKit.framework */; };
 		D3B2D1C71F53C4DD00DE112E /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D3B2D1C31F53C4DD00DE112E /* FBSDKLoginKit.framework */; };
 		D3B2D1C81F53C4DD00DE112E /* FBSDKShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D3B2D1C41F53C4DD00DE112E /* FBSDKShareKit.framework */; };
+		D3F8DFD01F784FE400DDF362 /* NewWorkoutPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3F8DFCF1F784FE400DDF362 /* NewWorkoutPresenter.swift */; };
+		D3F8DFD21F7B299F00DDF362 /* ExerciseEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3F8DFD11F7B299F00DDF362 /* ExerciseEditView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -97,6 +99,8 @@
 		D3B2D1C21F53C4DD00DE112E /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKCoreKit.framework; sourceTree = "<group>"; };
 		D3B2D1C31F53C4DD00DE112E /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKLoginKit.framework; sourceTree = "<group>"; };
 		D3B2D1C41F53C4DD00DE112E /* FBSDKShareKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKShareKit.framework; sourceTree = "<group>"; };
+		D3F8DFCF1F784FE400DDF362 /* NewWorkoutPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = NewWorkoutPresenter.swift; path = Presenters/Today/NewWorkoutPresenter.swift; sourceTree = "<group>"; };
+		D3F8DFD11F7B299F00DDF362 /* ExerciseEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ExerciseEditView.swift; path = Views/Today/ExerciseEditView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -234,6 +238,7 @@
 		927757CB1F3A299500A3AF56 /* Presenters */ = {
 			isa = PBXGroup;
 			children = (
+				D3F8DFCE1F784F8300DDF362 /* Today */,
 			);
 			name = Presenters;
 			sourceTree = "<group>";
@@ -262,6 +267,7 @@
 				927757D71F3A2A2A00A3AF56 /* WorkoutPlanChoiceVC.swift */,
 				922585B81F3B8106004F7515 /* WorkoutTemplateVC.swift */,
 				927757D51F3A2A2A00A3AF56 /* CreateNewWorkoutVC.swift */,
+				D3F8DFD11F7B299F00DDF362 /* ExerciseEditView.swift */,
 			);
 			name = Today;
 			sourceTree = "<group>";
@@ -288,6 +294,14 @@
 				92A8E5501F549C6200284AE0 /* GoogleService-Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		D3F8DFCE1F784F8300DDF362 /* Today */ = {
+			isa = PBXGroup;
+			children = (
+				D3F8DFCF1F784FE400DDF362 /* NewWorkoutPresenter.swift */,
+			);
+			name = Today;
 			sourceTree = "<group>";
 		};
 		DB5F797ECDFCB39ADAFBA074 /* Frameworks */ = {
@@ -493,6 +507,7 @@
 				927757DE1F3A2A4B00A3AF56 /* ProfileMainVC.swift in Sources */,
 				922585CD1F3E7817004F7515 /* Exercise+CoreDataProperties.swift in Sources */,
 				922585B91F3B8106004F7515 /* WorkoutTemplateVC.swift in Sources */,
+				D3F8DFD01F784FE400DDF362 /* NewWorkoutPresenter.swift in Sources */,
 				922585CC1F3E7817004F7515 /* Exercise+CoreDataClass.swift in Sources */,
 				922585CF1F3E7817004F7515 /* Section+CoreDataProperties.swift in Sources */,
 				927757A01F3A226F00A3AF56 /* Hercules.xcdatamodeld in Sources */,
@@ -506,6 +521,7 @@
 				922585D01F3E7817004F7515 /* Workout+CoreDataClass.swift in Sources */,
 				927757DA1F3A2A2A00A3AF56 /* NewWorkoutVC.swift in Sources */,
 				927757981F3A226F00A3AF56 /* AppDelegate.swift in Sources */,
+				D3F8DFD21F7B299F00DDF362 /* ExerciseEditView.swift in Sources */,
 				927757D91F3A2A2A00A3AF56 /* CreateNewWorkoutVC.swift in Sources */,
 				922585D11F3E7817004F7515 /* Workout+CoreDataProperties.swift in Sources */,
 				922585CE1F3E7817004F7515 /* Section+CoreDataClass.swift in Sources */,

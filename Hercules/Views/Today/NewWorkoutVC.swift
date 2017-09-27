@@ -20,6 +20,8 @@ class NewWorkoutVC: UIViewController {
     var sectionList: [Section]! = []
     var exerciseList: [Exercise]! = []
     
+    var exerciseEditView: UIView? = nil
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -28,8 +30,8 @@ class NewWorkoutVC: UIViewController {
         workoutNameLabelInit()
         exerciseTableViewInit()
 
-        CoreDataService.createWorkoutTemplateChest()
-        CoreDataService.createWorkoutTemplateBS()
+//        CoreDataService.createWorkoutTemplateChest()
+//        CoreDataService.createWorkoutTemplateBS()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -163,7 +165,7 @@ extension NewWorkoutVC {
         exerciseTableView.topAnchor.constraint(equalTo: workoutNameLabel.bottomAnchor, constant: 30).isActive = true
         exerciseTableView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 0).isActive = true
         exerciseTableView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: 0).isActive = true
-        exerciseTableView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: -60).isActive = true
+        exerciseTableView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: -tabbar_height).isActive = true
     }
 }
 
@@ -172,13 +174,33 @@ extension NewWorkoutVC {
     func createNewButtonClicked() {
         self.performSegue(withIdentifier: "NewWorkoutToWorkTypeSegue", sender: nil)
     }
+    
+    func displayExerciseEditView(_ indexPath: IndexPath) {
+        let exercise = (workout!.section![indexPath.section] as! Section).exercise![indexPath.row] as! Exercise
+        let view = ExerciseEditView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height), value: exercise.reps)
+        self.view.addSubview(view)
+    }
+    
+    func dismissExerciseEditView() {
+        if exerciseEditView != nil {
+            exerciseEditView!.removeFromSuperview()
+            exerciseEditView = nil
+        }
+    }
+}
+
+//MARK: -
+extension NewWorkoutVC: NewWorkoutDelegate {
+    func setCurrentWorkoutPlan() {
+        
+    }
 }
 
 //MARK: - UITableViewDelegate, UITableViewDataSource
 extension NewWorkoutVC: UITableViewDelegate, UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
         //+1 is for one more section which only contains 1 cell "Add Section"
-        print(workout!.section!.count+1)
+//        print(workout!.section!.count+1)
         return workout == nil || workout!.section == nil ? 0 : workout!.section!.count+1
     }
     
@@ -201,14 +223,14 @@ extension NewWorkoutVC: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         switch indexPath.section {
-        case 0..<sectionList.count: //normal cell
+        case 0..<workout!.section!.count: //normal cell
             if indexPath.row < (workout!.section![indexPath.section] as! Section).exercise!.count {
                 let cell = tableView.dequeueReusableCell(withIdentifier: ExerciseTableViewCell.identifier, for: indexPath) as! ExerciseTableViewCell
                 cell.selectionStyle = .none
                 let exercise = (workout!.section![indexPath.section] as! Section).exercise![indexPath.row] as! Exercise
                 cell.nameLabel.text = exercise.name
                 cell.weightTextField.text = "\(exercise.weight)"
-                cell.weightTextField.text = "\(exercise.reps)"
+                cell.repsTextField.text = "\(exercise.reps)"
                 return cell
             } else { //add exercise cell
                 let cell = tableView.dequeueReusableCell(withIdentifier: AddExerciseTableViewCell.identifier, for: indexPath) as! AddExerciseTableViewCell
@@ -227,7 +249,7 @@ extension NewWorkoutVC: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if (editingStyle == UITableViewCellEditingStyle.delete) {
-            let section = sectionList[indexPath.section]
+            let section = workout!.section![indexPath.section] as! Section
             let exercise = section.exercise![indexPath.row] as! Exercise
             CoreDataService.deleteExercise(exercise: exercise)
             tableView.reloadData()
@@ -236,11 +258,13 @@ extension NewWorkoutVC: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         switch indexPath.section {
-        case 0..<sectionList.count: //add one more exercise in current section
-            if indexPath.row == sectionList[indexPath.section].exercise!.count {
+        case 0..<workout!.section!.count: //add one more exercise in current section
+            if indexPath.row == (workout!.section![indexPath.section] as! Section).exercise!.count {
                 print("add one exercise")
                 //TODO: add new exercise
+                return
             }
+            displayExerciseEditView(indexPath)
         default: //add one more section
             print("add one section")
             //TODO: add new section

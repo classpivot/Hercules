@@ -14,7 +14,18 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate {
     {
         var tabFrame = self.tabBar.frame
         tabFrame.size.height = 60
-        tabFrame.origin.y = self.view.frame.size.height - 60
+        if device_height == 812 {
+            if #available(iOS 11.0, *) {
+                tabFrame.size.height = 60 + self.view.safeAreaInsets.bottom
+                tabbar_height = 60 + self.view.safeAreaInsets.bottom
+                tabFrame.origin.y = self.view.frame.size.height - tabFrame.size.height
+            } else {
+                tabFrame.origin.y = self.view.frame.size.height - 60
+            }
+        } else {
+            // Fallback on earlier versions
+            tabFrame.origin.y = self.view.frame.size.height - 60
+        }
         self.tabBar.frame = tabFrame
         self.delegate = self
     }
