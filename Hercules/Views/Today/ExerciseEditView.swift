@@ -10,7 +10,7 @@ import UIKit
 
 class ExerciseEditView: UIView {
     
-    let weightChangeArray: [Double] = [0.5, 1, 5, 10]
+    let weightChangeArray: [Double] = [0.5, 1, 5, 10, -0.5, -1, -5, -10]
     let repsChangeArray: [Int] = [1, 5, 10, -1, -5, -10]
     var contentView = UIView()
     var valueLabel = UILabel()
@@ -37,6 +37,7 @@ class ExerciseEditView: UIView {
         contentViewInit()
         valueLabelInit(value: value)
         collectionViewInit()
+        buttonsInit()
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -48,7 +49,7 @@ class ExerciseEditView: UIView {
         contentView.translatesAutoresizingMaskIntoConstraints = false
         self.addSubview(contentView)
         
-        contentView.topAnchor.constraint(equalTo: self.topAnchor, constant: 30).isActive = true
+        contentView.centerYAnchor.constraint(equalTo: self.centerYAnchor, constant: 0).isActive = true
         contentView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 20).isActive = true
         contentView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -20).isActive = true
         contentView.heightAnchor.constraint(equalToConstant: device_width/2+140).isActive = true
@@ -95,6 +96,39 @@ class ExerciseEditView: UIView {
         collectionView.bounces = false
         contentView.addSubview(collectionView)
     }
+    
+    func buttonsInit() {
+        let buttonWidth = (device_width-40)/2-30
+        let saveButton = UIButton(frame: CGRect(x: 20, y: (device_width-40)/2+90, width: buttonWidth, height: 40))
+        saveButton.setTitle(NSLocalizedString("Save", comment: ""), for: .normal)
+        saveButton.setTitleColor(Constants.Colors.darkGray, for: UIControlState())
+        saveButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 17)
+        saveButton.layer.cornerRadius = 5
+        saveButton.layer.borderColor = Constants.Colors.darkGray.cgColor
+        saveButton.layer.borderWidth = 1
+        saveButton.addTarget(self, action: #selector(self.saveButtonClicked), for: UIControlEvents.touchUpInside)
+        contentView.addSubview(saveButton)
+        
+        let cancelButton = UIButton(frame: CGRect(x: (device_width-40)/2+10, y: (device_width-40)/2+90, width: buttonWidth, height: 40))
+        cancelButton.setTitle(NSLocalizedString("Cancel", comment: ""), for: .normal)
+        cancelButton.setTitleColor(Constants.Colors.darkGray, for: UIControlState())
+        cancelButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 17)
+        cancelButton.layer.cornerRadius = 5
+        cancelButton.layer.borderColor = Constants.Colors.darkGray.cgColor
+        cancelButton.layer.borderWidth = 1
+        cancelButton.addTarget(self, action: #selector(self.cancelButtonClicked), for: UIControlEvents.touchUpInside)
+        contentView.addSubview(cancelButton)
+    }
+}
+
+//MARK: - User Interactions
+extension ExerciseEditView {
+    func saveButtonClicked() {
+    }
+    
+    func cancelButtonClicked() {
+        self.removeFromSuperview()
+    }
 }
 
 //MARK: - UICollectionViewDelegate, UICollectionViewDataSource
@@ -109,6 +143,20 @@ extension ExerciseEditView: UICollectionViewDelegate, UICollectionViewDataSource
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ValueChangeCollectionViewCell", for: indexPath) as! ValueChangeCollectionViewCell
+        switch valueType {
+        case .int32:
+            cell.valueLabel.text = indexPath.row <= 2 ? "+\(repsChangeArray[indexPath.row])" : "\(repsChangeArray[indexPath.row])"
+        case .double:
+            switch indexPath.row {
+            case 0:
+                cell.valueLabel.text = "+\(weightChangeArray[indexPath.row])"
+            case 4:
+                cell.valueLabel.text = "\(weightChangeArray[indexPath.row])"
+            default:
+                cell.valueLabel.text = indexPath.row <= 3 ? "+\(Int(weightChangeArray[indexPath.row]))" : "\(Int(weightChangeArray[indexPath.row]))"
+            }
+            
+        }
         return cell
     }
     
@@ -141,17 +189,17 @@ class ValueChangeCollectionViewCell: UICollectionViewCell {
         super.init(frame: frame)
         mainView = UIView()
         mainView.translatesAutoresizingMaskIntoConstraints = false
-        mainView.layer.cornerRadius = 3
-        mainView.layer.borderWidth = 2
         contentView.addSubview(mainView)
         
         imageView = UIImageView()
+        imageView.image = UIImage(named: "circle_100x100")
         imageView.translatesAutoresizingMaskIntoConstraints = false
         mainView.addSubview(imageView)
         
         valueLabel = UILabel()
         valueLabel.translatesAutoresizingMaskIntoConstraints = false
         valueLabel.adjustsFontSizeToFitWidth = true
+        valueLabel.textAlignment = .center
         valueLabel.font = UIFont.boldSystemFont(ofSize: 20)
         valueLabel.textColor = Constants.Colors.darkGray
         mainView.addSubview(valueLabel)
@@ -173,7 +221,7 @@ class ValueChangeCollectionViewCell: UICollectionViewCell {
         
         valueLabel.centerYAnchor.constraint(equalTo: mainView.centerYAnchor).isActive = true
         valueLabel.centerXAnchor.constraint(equalTo: mainView.centerXAnchor).isActive = true
-        valueLabel.widthAnchor.constraint(equalTo: mainView.widthAnchor, multiplier: 0.7).isActive = true
+        valueLabel.widthAnchor.constraint(equalTo: mainView.widthAnchor, multiplier: 0.6).isActive = true
     }
     
     required init?(coder aDecoder: NSCoder) {

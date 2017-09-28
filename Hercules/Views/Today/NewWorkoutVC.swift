@@ -177,7 +177,7 @@ extension NewWorkoutVC {
     
     func displayExerciseEditView(_ indexPath: IndexPath) {
         let exercise = (workout!.section![indexPath.section] as! Section).exercise![indexPath.row] as! Exercise
-        let view = ExerciseEditView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height), value: exercise.reps)
+        let view = ExerciseEditView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height-tabbar_height), value: exercise.weight)
         self.view.addSubview(view)
     }
     
